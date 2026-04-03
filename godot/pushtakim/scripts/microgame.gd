@@ -1,4 +1,4 @@
-class_name Microgame extends Node
+class_name Microgame extends Node2D
 ## The top node of every microgame. 
 ## Interfaces with the main game handler by giving access to level-relevant data in a convenient way.
 ## Level metadata should be stored here as @export-ed variables.
@@ -14,8 +14,10 @@ var microgame_name: String = "Level Name Missing";
 @export
 var length_in_seconds: float = 3.0;
 
+
 ## Whether or not player has won at the microgame. Should only be modified by `set_player_won_at_microgame()`.
 var player_won_at_microgame: bool = false;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +30,10 @@ func _process(delta: float) -> void:
 
 ## When run, declares the player the victor of the current microgame.
 func set_player_won_at_microgame() -> void:
+	# You shouldn't be running this twice. If the player won, they won. It's final.
+	if player_won_at_microgame:
+		return;
+	
 	player_won_at_microgame = true;
 	# TODO: Have an event that announces the player won.
 

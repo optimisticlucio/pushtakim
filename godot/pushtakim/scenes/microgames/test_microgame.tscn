@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c1gyp4k7qe363"]
+
+[ext_resource type="Script" uid="uid://dhubohyjl5iwq" path="res://scripts/microgame.gd" id="1_sq2yu"]
+
+[node name="TestMicrogame" type="Node2D" unique_id=651624216]
+script = ExtResource("1_sq2yu")
+microgame_name = "Test Microgame"
+length_in_seconds = 4.0
+metadata/_custom_type_script = "uid://dhubohyjl5iwq"
+
+[node name="Label" type="Label" parent="." unique_id=1297106385]
+offset_left = 402.0
+offset_top = 251.0
+offset_right = 713.0
+offset_bottom = 328.0
+text = "This test microgame automatically wins.
+so uh, congratulations!"

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xvpldg53rm0h"]
+
+[ext_resource type="Script" uid="uid://d1wvr5445tewe" path="res://scripts/game_session.gd" id="1_whdcj"]
+[ext_resource type="PackedScene" uid="uid://c1gyp4k7qe363" path="res://scenes/microgames/test_microgame.tscn" id="2_j2smc"]
+
+[node name="DefaultGameSession" type="Node2D" unique_id=1082401331]
+script = ExtResource("1_whdcj")
+microgames_for_this_session = Array[PackedScene]([ExtResource("2_j2smc")])
+metadata/_custom_type_script = "uid://d1wvr5445tewe"
