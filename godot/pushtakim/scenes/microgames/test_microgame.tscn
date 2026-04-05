@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://c1gyp4k7qe363"]
 
-[ext_resource type="Script" uid="uid://dhubohyjl5iwq" path="res://scripts/microgame.gd" id="1_sq2yu"]
+[ext_resource type="Script" uid="uid://cyywcsswd3c4u" path="res://scripts/microgames/test_microgame.gd" id="1_sq2yu"]
 
-[node name="TestMicrogame" type="Node2D" unique_id=651624216]
+[node name="TestMicrogame" type="Node2D" unique_id=2096076100]
 script = ExtResource("1_sq2yu")
-microgame_name = "Test Microgame"
-length_in_seconds = 4.0
-metadata/_custom_type_script = "uid://dhubohyjl5iwq"
 
 [node name="Label" type="Label" parent="." unique_id=1297106385]
 offset_left = 402.0

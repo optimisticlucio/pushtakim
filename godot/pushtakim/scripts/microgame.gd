@@ -18,6 +18,8 @@ var length_in_seconds: float = 3.0;
 ## Whether or not player has won at the microgame. Should only be modified by `set_player_won_at_microgame()`.
 var player_won_at_microgame: bool = false;
 
+## Signal that triggers when the player completes this microgame's win condition.
+signal player_wins_at_microgame;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +37,8 @@ func set_player_won_at_microgame() -> void:
 		return;
 	
 	player_won_at_microgame = true;
-	# TODO: Have an event that announces the player won.
+	player_wins_at_microgame.emit();
+	print("Microgame emitted player_wins_at_microgame")
 
 ## Returns whether or not the player won at the microgame.
 func player_has_won_at_microgame() -> bool:

@@ -9,6 +9,10 @@ var microgames_for_this_session: Array[PackedScene] = [];
 @export
 var starting_lives: int = 3;
 
+## The node under which the microgames will be instantiated. 
+## SHOULD NOT HAVE ANY CHILDREN! If this variable is null, a runtime error is thrown. 
+@export
+var microgame_holding_node: Node2D = null;
 
 ## The microgames which haven't been played in this particular game session. 
 ## Changes during runtime. If you want the originally set ones, reference `microgames_for_this_session`.
@@ -24,6 +28,9 @@ var seconds_on_current_microgame: float = 0;
 ## MAY BE NULL. Points towards the loaded microgame scene. If it's null, we don't have a microgame loaded.
 var current_loaded_microgame: Microgame = null;
 
+## Signal that triggers the moment a player completes the microgame win condition. Triggered by the microgame, this just passes it forward.
+signal player_won_microgame;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,14 +41,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_loaded_microgame:
 		if current_loaded_microgame.length_in_seconds < seconds_on_current_microgame:
-			handle_finished_microgame();
-			start_new_microgame();
+			replace_current_microgame();
 		else:
 			seconds_on_current_microgame += delta;
 
+## Function that's run every time a microgame ends. Cleans up the current microgame, shows info to player, and then loads up a new one.
+func replace_current_microgame():
+	handle_finished_microgame();
+	
+	# TODO: Show info to user
+	await get_tree().create_timer(4.0).timeout;
+	
+	start_new_microgame();
 
 ## Should be run during `_ready()`; initializes any runtime variables that can't be known ahead of time.
 func setup_variables() -> void:
+	# Validate our assumptions exist
+	if microgame_holding_node == null: 
+		push_error("[CONFIG ERROR] In the loaded game session setup, `microgame_holding_node` is unset.");
+	if microgames_for_this_session.is_empty():
+		push_error("[CONFIG ERROR] In the loaded game session setup, `microgames_for_this_session` is empty.");
+	
+	# Assumptions valid, let's rock
 	remaining_lives = starting_lives;
 	
 	# Load all the packed scenes. If any of them are not a microgame, throw an error.
@@ -58,9 +79,15 @@ func setup_variables() -> void:
 
 ## Returns true if the given PackedScene's root node is a Microgame node.
 func is_microgame_scene(packed_scene: PackedScene) -> bool:
-	var state = packed_scene.get_state();
-	var root_class = state.get_node_type(0);
-	return ClassDB.is_parent_class(root_class, "Microgame") or root_class == "Microgame";
+	var state = packed_scene.get_state()
+	for i in state.get_node_property_count(0):
+		if state.get_node_property_name(0, i) == "script":
+			var script = state.get_node_property_value(0, i) as GDScript
+			while script:
+				if script.get_global_name() == "Microgame":
+					return true
+				script = script.get_base_script()
+	return false
 
 
 ## When called, instantiates a new microgame for the player.
@@ -72,14 +99,28 @@ func start_new_microgame() -> void:
 	var next_microgame = available_microgames.pop_front();
 	
 	current_loaded_microgame = next_microgame.instantiate();
-	# TODO: Place it appropriately in the scene tree.
 	
+	# Connect the relevant signals.
+	current_loaded_microgame.player_wins_at_microgame.connect(func(): 
+		player_won_microgame.emit()
+		print("GameSession passed player_won_at_microgame signal.")
+		)
+	
+	microgame_holding_node.add_child(current_loaded_microgame);
 	seconds_on_current_microgame = 0;
 
 ## Called when a microgame finishes. Handles the cleanup of the current microgame and loading the next one, if appropriate.
 func handle_finished_microgame() -> void:
-	# TODO: Handle points and such.
+	var player_won_at_microgame = current_loaded_microgame.player_has_won_at_microgame();
 	
-	# TODO: Unload current microgame
-	
+	current_loaded_microgame.free();
 	current_loaded_microgame = null;
+	
+	if player_won_at_microgame:
+		# TODO: Show player a cool "yippee! You did it" screen
+		pass 
+	else:
+		# TODO: Show player a "boo! you failed" screen
+		remaining_lives -= 1;
+		
+		# TODO: If player's lives are at zero, show loss screen.
