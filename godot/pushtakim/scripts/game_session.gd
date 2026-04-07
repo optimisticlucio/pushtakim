@@ -14,6 +14,10 @@ var starting_lives: int = 3;
 @export
 var microgame_holding_node: Node2D = null;
 
+## The overlay which will only be visible during microgames.
+@export
+var overlay_node: MicrogameOverlay = null;
+
 ## The microgames which haven't been played in this particular game session. 
 ## Changes during runtime. If you want the originally set ones, reference `microgames_for_this_session`.
 var available_microgames: Array[PackedScene] = []; 
@@ -61,6 +65,8 @@ func setup_variables() -> void:
 		push_error("[CONFIG ERROR] In the loaded game session setup, `microgame_holding_node` is unset.");
 	if microgames_for_this_session.is_empty():
 		push_error("[CONFIG ERROR] In the loaded game session setup, `microgames_for_this_session` is empty.");
+	if overlay_node == null:
+		push_error("[CONFIG ERROR] In the loaded game session setup, `overlay_node` is empty.");
 	
 	# Assumptions valid, let's rock
 	remaining_lives = starting_lives;
@@ -76,6 +82,10 @@ func setup_variables() -> void:
 	available_microgames.append_array(loaded_microgames);
 	available_microgames.append_array(loaded_microgames);
 	available_microgames.shuffle();
+	
+	# The overlay should be hidden outside of microgames.
+	overlay_node.visible = false;
+	player_won_microgame.connect(overlay_node.on_player_win);
 
 ## Returns true if the given PackedScene's root node is a Microgame node.
 func is_microgame_scene(packed_scene: PackedScene) -> bool:
@@ -107,6 +117,12 @@ func start_new_microgame() -> void:
 		)
 	
 	microgame_holding_node.add_child(current_loaded_microgame);
+	
+	# Set up overlay
+	overlay_node.reset();
+	overlay_node.set_variables(current_loaded_microgame.length_in_seconds);
+	overlay_node.visible = true;
+	
 	seconds_on_current_microgame = 0;
 
 ## Called when a microgame finishes. Handles the cleanup of the current microgame and loading the next one, if appropriate.
@@ -115,6 +131,8 @@ func handle_finished_microgame() -> void:
 	
 	current_loaded_microgame.free();
 	current_loaded_microgame = null;
+	
+	overlay_node.visible = false;
 	
 	if player_won_at_microgame:
 		# TODO: Show player a cool "yippee! You did it" screen

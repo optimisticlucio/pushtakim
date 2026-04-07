@@ -2,16 +2,20 @@
 
 [ext_resource type="Script" uid="uid://d1wvr5445tewe" path="res://scripts/game_session.gd" id="1_whdcj"]
 [ext_resource type="PackedScene" uid="uid://c1gyp4k7qe363" path="res://scenes/microgames/test_microgame.tscn" id="2_j2smc"]
+[ext_resource type="PackedScene" uid="uid://432igylw606k" path="res://scenes/overlays/test_overlay.tscn" id="3_4vpq8"]
 [ext_resource type="AudioStream" uid="uid://ccdbv7pnmbtqg" path="res://assets/sfx/nice.mp3" id="3_mtpdp"]
 [ext_resource type="Script" uid="uid://l8eovshfqd7b" path="res://scripts/play_sound_on_player_victory.gd" id="4_4vpq8"]
 
-[node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node")]
+[node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
 microgames_for_this_session = Array[PackedScene]([ExtResource("2_j2smc")])
 microgame_holding_node = NodePath("MicrogameHolder")
+overlay_node = NodePath("TestOverlay")
 metadata/_custom_type_script = "uid://d1wvr5445tewe"
 
 [node name="MicrogameHolder" type="Node2D" parent="." unique_id=2025458168]
+
+[node name="TestOverlay" parent="." unique_id=1803062742 instance=ExtResource("3_4vpq8")]
 
 [node name="PlayerSuccessNoise" type="AudioStreamPlayer" parent="." unique_id=478529751 node_paths=PackedStringArray("parent_game_session")]
 stream = ExtResource("3_mtpdp")
