@@ -18,6 +18,10 @@ var microgame_holding_node: Node2D = null;
 @export
 var overlay_node: MicrogameOverlay = null;
 
+## The amount of time between each minigame, in seconds, spent in the menu.
+@export
+var break_time_between_minigames: float = 1;
+
 ## The microgames which haven't been played in this particular game session. 
 ## Changes during runtime. If you want the originally set ones, reference `microgames_for_this_session`.
 var available_microgames: Array[PackedScene] = []; 
@@ -54,7 +58,7 @@ func replace_current_microgame():
 	handle_finished_microgame();
 	
 	# TODO: Show info to user
-	await get_tree().create_timer(4.0).timeout;
+	await get_tree().create_timer(break_time_between_minigames).timeout;
 	
 	start_new_microgame();
 
@@ -67,6 +71,8 @@ func setup_variables() -> void:
 		push_error("[CONFIG ERROR] In the loaded game session setup, `microgames_for_this_session` is empty.");
 	if overlay_node == null:
 		push_error("[CONFIG ERROR] In the loaded game session setup, `overlay_node` is empty.");
+	if seconds_on_current_microgame < 0:
+		push_error("[CONFIG ERROR] In the loaded game session setup, `seconds_on_current_microgame` is set to a negative value.")
 	
 	# Assumptions valid, let's rock
 	remaining_lives = starting_lives;
@@ -113,7 +119,6 @@ func start_new_microgame() -> void:
 	# Connect the relevant signals.
 	current_loaded_microgame.player_wins_at_microgame.connect(func(): 
 		player_won_microgame.emit()
-		print("GameSession passed player_won_at_microgame signal.")
 		)
 	
 	microgame_holding_node.add_child(current_loaded_microgame);
