@@ -39,6 +39,9 @@ var current_loaded_microgame: Microgame = null;
 ## Signal that triggers the moment a player completes the microgame win condition. Triggered by the microgame, this just passes it forward.
 signal player_won_microgame;
 
+## Signal that triggers the moment a player irreversibly fails a microgame win condition. Triggered by the microgame, this just passes it forward.
+signal player_lost_microgame;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -92,6 +95,7 @@ func setup_variables() -> void:
 	# The overlay should be hidden outside of microgames.
 	overlay_node.visible = false;
 	player_won_microgame.connect(overlay_node.on_player_win);
+	player_lost_microgame.connect(overlay_node.on_player_loss);
 
 ## Returns true if the given PackedScene's root node is a Microgame node.
 func is_microgame_scene(packed_scene: PackedScene) -> bool:
@@ -119,6 +123,9 @@ func start_new_microgame() -> void:
 	# Connect the relevant signals.
 	current_loaded_microgame.player_wins_at_microgame.connect(func(): 
 		player_won_microgame.emit()
+		)
+	current_loaded_microgame.player_loses_at_microgame.connect(func():
+		player_lost_microgame.emit()
 		)
 	
 	microgame_holding_node.add_child(current_loaded_microgame);
