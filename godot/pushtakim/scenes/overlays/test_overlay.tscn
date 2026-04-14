@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://432igylw606k"]
+
+[ext_resource type="Script" uid="uid://ct3gqj1lsao3l" path="res://scripts/overlays/test_overlay.gd" id="1_h7s7q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h7s7q"]
+font_size = 37
+font_color = Color(0.3487108, 0.6977984, 9.62615e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mh34c"]
+font_size = 37
+font_color = Color(0.9619979, 0, 0.37712142, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tkoqr"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rh3gp"]
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+
+[node name="TestOverlay" type="Node2D" unique_id=1803062742 node_paths=PackedStringArray("player_won_node", "player_loss_node", "clock_node")]
+script = ExtResource("1_h7s7q")
+player_won_node = NodePath("VictoryNode")
+player_loss_node = NodePath("LossNode")
+clock_node = NodePath("TimeLeft/Label")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1842713317]
+offset_left = -3.0
+offset_top = 526.0
+offset_right = 1159.0
+offset_bottom = 652.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=213058842]
+offset_left = 5.0
+offset_top = 534.0
+offset_right = 1144.0
+offset_bottom = 642.0
+
+[node name="VictoryNode" type="Node2D" parent="." unique_id=1243072824]
+
+[node name="Label" type="Label" parent="VictoryNode" unique_id=1415135400]
+offset_left = 36.0
+offset_top = 562.0
+offset_right = 208.0
+offset_bottom = 613.0
+text = "Good Job!"
+label_settings = SubResource("LabelSettings_h7s7q")
+
+[node name="LossNode" type="Node2D" parent="." unique_id=2059777214]
+visible = false
+
+[node name="Label" type="Label" parent="LossNode" unique_id=1630267515]
+offset_left = 36.0
+offset_top = 562.0
+offset_right = 208.0
+offset_bottom = 613.0
+text = "You Failed!"
+label_settings = SubResource("LabelSettings_mh34c")
+
+[node name="TimeLeft" type="Label" parent="." unique_id=2114242290]
+offset_left = 853.0
+offset_top = 566.0
+offset_right = 996.0
+offset_bottom = 608.0
+text = "Time Left:"
+label_settings = SubResource("LabelSettings_tkoqr")
+
+[node name="Label" type="Label" parent="TimeLeft" unique_id=1727708274]
+layout_mode = 0
+offset_left = 151.0
+offset_top = -4.0
+offset_right = 272.0
+offset_bottom = 45.0
+text = "0.00"
+label_settings = SubResource("LabelSettings_rh3gp")

@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://clc6u88es5ohd"]
+
+[ext_resource type="Script" uid="uid://b2wikff8maibj" path="res://scripts/microgames/tropit.gd" id="1_64t13"]
+[ext_resource type="Texture2D" uid="uid://de0avf01k4eq" path="res://assets/img/microgames/tropit/background.jpeg" id="2_4scip"]
+[ext_resource type="AudioStream" uid="uid://dedgnxi7oe8bf" path="res://assets/audio/microgames/tropit/muffled_happy_birthday_music.mp3" id="3_bsqc5"]
+[ext_resource type="Texture2D" uid="uid://di02twfwv2rgm" path="res://assets/img/microgames/tropit/tropit_spritesheet.png" id="4_m8vux"]
+[ext_resource type="AudioStream" uid="uid://dkij6q7dbvolf" path="res://assets/audio/microgames/tropit/ahh.mp3" id="5_m8vux"]
+[ext_resource type="AudioStream" uid="uid://ce3fvbi566nn2" path="res://assets/audio/microgames/tropit/sip.mp3" id="6_48bau"]
+
+[sub_resource type="Animation" id="Animation_leij5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TropitSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(517, 266)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TropitSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ywo2p"]
+resource_name = "sip"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TropitSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(517, 266), Vector2(670.7356, 233.73561)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TropitSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.3647738]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fvqmp"]
+_data = {
+&"RESET": SubResource("Animation_leij5"),
+&"sip": SubResource("Animation_ywo2p")
+}
+
+[node name="Tropit" type="Node2D" unique_id=1979613983 node_paths=PackedStringArray("tropit_sprite_node", "sipping_noise_node", "satisfied_noise_node", "animation_handler")]
+script = ExtResource("1_64t13")
+amount_of_sips_to_finish_drink = 10
+spacing_between_sips_in_second = 0.3
+tropit_sprite_node = NodePath("TropitSprite")
+time_until_stop_sipping_noise = 0.5
+sipping_noise_node = NodePath("SippingNoise")
+satisfied_noise_node = NodePath("SatisfiedNoise")
+animation_handler = NodePath("AnimationPlayer")
+microgame_name = "Tropit"
+length_in_seconds = 6.0
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2133373238]
+position = Vector2(575.0442, 333.5265)
+rotation = 0.034906585
+scale = Vector2(0.5994963, 0.5994963)
+texture = ExtResource("2_4scip")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1104999430]
+offset_right = 1169.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 0.30588236)
+
+[node name="BackingMusic" type="AudioStreamPlayer" parent="." unique_id=149403377]
+stream = ExtResource("3_bsqc5")
+volume_db = -14.597
+autoplay = true
+
+[node name="TropitSprite" type="Sprite2D" parent="." unique_id=1883086494]
+position = Vector2(517, 266)
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("4_m8vux")
+hframes = 4
+vframes = 2
+
+[node name="SatisfiedNoise" type="AudioStreamPlayer" parent="." unique_id=1922766002]
+stream = ExtResource("5_m8vux")
+
+[node name="SippingNoise" type="AudioStreamPlayer" parent="." unique_id=184276189]
+stream = ExtResource("6_48bau")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1537227978]
+libraries/ = SubResource("AnimationLibrary_fvqmp")
