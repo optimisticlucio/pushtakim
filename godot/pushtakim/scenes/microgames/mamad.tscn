@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bg01665km0270"]
+
+[ext_resource type="Script" uid="uid://drrkqc0mif2jv" path="res://scripts/microgames/mamad.gd" id="1_rfvtp"]
+[ext_resource type="Texture2D" uid="uid://5ej154grsnts" path="res://assets/img/microgames/mamad/test_door.png" id="2_wf7lu"]
+[ext_resource type="PackedScene" uid="uid://bkgjiampw8arw" path="res://scenes/microgames/mamad/doorhandle.tscn" id="3_mtk5k"]
+
+[node name="Mamad" type="Node2D" unique_id=1576821740 node_paths=PackedStringArray("doorhandle")]
+script = ExtResource("1_rfvtp")
+doorhandle = NodePath("DoorHandle")
+microgame_name = "Mamad Door"
+hebrew_action_verb = "לסגור"
+length_in_seconds = 6.0
+
+[node name="TestDoor" type="Sprite2D" parent="." unique_id=1134229170]
+position = Vector2(575.00006, 323)
+scale = Vector2(0.98846155, 0.9330424)
+texture = ExtResource("2_wf7lu")
+
+[node name="DoorHandle" parent="." unique_id=1890230890 instance=ExtResource("3_mtk5k")]
+position = Vector2(616, 295)
+handle_spin_speed = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1707933961]
+offset_left = 468.0
+offset_top = 49.0
+offset_right = 481.0
+offset_bottom = 79.0

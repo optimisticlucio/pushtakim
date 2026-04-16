@@ -22,6 +22,10 @@ var overlay_node: MicrogameOverlay = null;
 @export
 var break_time_between_minigames: float = 1;
 
+## The amount of time to remain on a minigame screen after its completed, for timeout stuff. In seconds.
+@export
+var post_minigame_wait_period_in_seconds: float = 1;
+
 ## The microgames which haven't been played in this particular game session. 
 ## Changes during runtime. If you want the originally set ones, reference `microgames_for_this_session`.
 var available_microgames: Array[PackedScene] = []; 
@@ -51,10 +55,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if current_loaded_microgame:
+		seconds_on_current_microgame += delta
+		
 		if current_loaded_microgame.length_in_seconds < seconds_on_current_microgame:
-			replace_current_microgame();
-		else:
-			seconds_on_current_microgame += delta;
+			current_loaded_microgame.set_default_victory_state();
+			if current_loaded_microgame.length_in_seconds + post_minigame_wait_period_in_seconds < seconds_on_current_microgame:
+				replace_current_microgame();
 
 ## Function that's run every time a microgame ends. Cleans up the current microgame, shows info to player, and then loads up a new one.
 func replace_current_microgame():
@@ -121,12 +127,8 @@ func start_new_microgame() -> void:
 	current_loaded_microgame = next_microgame.instantiate();
 	
 	# Connect the relevant signals.
-	current_loaded_microgame.player_wins_at_microgame.connect(func(): 
-		player_won_microgame.emit()
-		)
-	current_loaded_microgame.player_loses_at_microgame.connect(func():
-		player_lost_microgame.emit()
-		)
+	current_loaded_microgame.player_wins_at_microgame.connect(player_won_microgame.emit);
+	current_loaded_microgame.player_loses_at_microgame.connect(player_lost_microgame.emit);
 	
 	microgame_holding_node.add_child(current_loaded_microgame);
 	

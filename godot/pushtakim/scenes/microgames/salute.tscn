@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bd4r6mlbyyq4m"]
 
 [ext_resource type="Script" uid="uid://7cksdgk56dkj" path="res://scripts/microgames/salute.gd" id="1_piji6"]
-[ext_resource type="AudioStream" uid="uid://btdyu7guefagj" path="res://assets/sfx/microgames/salute/music.mp3" id="2_8p2x6"]
+[ext_resource type="AudioStream" uid="uid://btdyu7guefagj" path="res://assets/audio/microgames/salute/music.mp3" id="2_8p2x6"]
 [ext_resource type="PackedScene" uid="uid://cgfes32nltt20" path="res://scenes/microgames/salute/soldier.tscn" id="3_8p2x6"]
 
 [node name="Salute" type="Node2D" unique_id=1163983610 node_paths=PackedStringArray("audio_stream_node", "npc_soldiers", "player_soldier")]
 script = ExtResource("1_piji6")
 audio_stream_node = NodePath("AudioStreamPlayer")
-salute_distance_from_end = 1.6
+salute_distance_from_end = 0.8
 track_to_salute_to = ExtResource("2_8p2x6")
 time_to_salute_to = 16.7
 bounce_frequency = 0.392
@@ -15,7 +15,8 @@ salute_lenience = 0.3
 npc_soldiers = [NodePath("Soldier2"), NodePath("Soldier3")]
 player_soldier = NodePath("Soldier")
 microgame_name = "Salute"
-length_in_seconds = 4.0
+hebrew_action_verb = "להצדיע"
+length_in_seconds = 3.2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1254074362]
 volume_db = -20.0

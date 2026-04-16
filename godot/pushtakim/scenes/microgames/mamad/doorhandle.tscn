@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bkgjiampw8arw"]
+
+[ext_resource type="Script" uid="uid://bs7w6ttg4f8da" path="res://scripts/microgames/mamad/doorhandle.gd" id="1_bjjrk"]
+[ext_resource type="Texture2D" uid="uid://d1s03momsbqar" path="res://assets/img/microgames/mamad/test_handle.png" id="2_frjor"]
+
+[node name="DoorHandle" type="Area2D" unique_id=1890230890]
+script = ExtResource("1_bjjrk")
+
+[node name="TestHandle" type="Sprite2D" parent="." unique_id=1656875968]
+position = Vector2(-2, 72)
+texture = ExtResource("2_frjor")
+
+[node name="GrabbableArea" type="CollisionPolygon2D" parent="." unique_id=326315574]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(2, 206, 10, 60, 45, 49, -51, 38, -30, 57, -34, 202)
