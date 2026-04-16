@@ -9,7 +9,7 @@ script = ExtResource("1_rfvtp")
 doorhandle = NodePath("DoorHandle")
 microgame_name = "Mamad Door"
 hebrew_action_verb = "לסגור"
-length_in_seconds = 6.0
+length_in_seconds = 5.0
 
 [node name="TestDoor" type="Sprite2D" parent="." unique_id=1134229170]
 position = Vector2(575.00006, 323)
@@ -18,7 +18,7 @@ texture = ExtResource("2_wf7lu")
 
 [node name="DoorHandle" parent="." unique_id=1890230890 instance=ExtResource("3_mtk5k")]
 position = Vector2(616, 295)
-handle_spin_speed = 40.0
+handle_spin_speed = 75.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1707933961]
 offset_left = 468.0
