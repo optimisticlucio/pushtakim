@@ -2,11 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://bvsv0sowha0ru" path="res://assets/img/microgames/krembo/krembo_layers.png" id="1_2fg6x"]
 [ext_resource type="Script" uid="uid://dwneailc8x35q" path="res://scripts/microgames/krembo/the_krembo_in_question.gd" id="1_ky5w3"]
+[ext_resource type="AudioStream" uid="uid://cncv2cnaado4k" path="res://assets/audio/microgames/krembo/aluminum_crunch.mp3" id="3_xxglo"]
+[ext_resource type="AudioStream" uid="uid://dhjqioetjitj8" path="res://assets/audio/microgames/krembo/crunch.mp3" id="4_hq8gg"]
 
-[node name="TheKremboInQuestion" type="Node2D" unique_id=1234685278 node_paths=PackedStringArray("wrapping_layer", "outer_chocolate_layer")]
+[node name="TheKremboInQuestion" type="Node2D" unique_id=1234685278 node_paths=PackedStringArray("wrapping_layer", "outer_chocolate_layer", "unwrap_sfx_node", "bite_sfx_node")]
 script = ExtResource("1_ky5w3")
 wrapping_layer = NodePath("TopLayerKrembo")
 outer_chocolate_layer = NodePath("OuterChocolate")
+bite_radius = 50
+unwrap_sfx_node = NodePath("UnwrapSFX")
+bite_sfx_node = NodePath("BiteSFX")
 
 [node name="OuterChocolate" type="Sprite2D" parent="." unique_id=486154360]
 texture = ExtResource("1_2fg6x")
@@ -14,5 +19,12 @@ hframes = 3
 frame = 1
 
 [node name="TopLayerKrembo" type="Sprite2D" parent="." unique_id=1367859924]
+position = Vector2(200, 200)
 texture = ExtResource("1_2fg6x")
 hframes = 3
+
+[node name="UnwrapSFX" type="AudioStreamPlayer" parent="." unique_id=113966085]
+stream = ExtResource("3_xxglo")
+
+[node name="BiteSFX" type="AudioStreamPlayer" parent="." unique_id=1196130655]
+stream = ExtResource("4_hq8gg")

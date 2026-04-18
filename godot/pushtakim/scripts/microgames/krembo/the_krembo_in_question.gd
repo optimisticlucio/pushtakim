@@ -16,10 +16,19 @@ var inner_layer: Sprite2D = null;
 @export
 var bite_radius: int = 10;
 
+## The unwrapping SFX node
+@export
+var unwrap_sfx_node: AudioStreamPlayer = null;
+
+## The bite SFX node
+@export
+var bite_sfx_node: AudioStreamPlayer = null;
 
 var mask_image_for_current_layer: Image = null;
 var mask_texture_for_current_layer: ImageTexture = null;
-var mask_node_for_current_layer: Sprite2D = null;
+var current_layer: Sprite2D = null;
+## The amount of white pixels left to eat in this image.
+var white_pixels_to_fill_for_current_layer: int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,18 +36,29 @@ func _ready() -> void:
 	
 	create_mask_layer(wrapping_layer);
 
-## Returns the amount of krembo that needs to be eaten in this layer.
-func get_krembo_percentage_left() -> float:
-	return 0.0; # TODO
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if mask_texture_for_current_layer == null:
+			return;
+		if current_layer.get_rect().has_point(current_layer.to_local(event.global_position)):
+			var local_pos = current_layer.to_local(event.global_position)
+			var img_size = current_layer.get_rect().size
+			var pixel_x = int(local_pos.x + img_size.x / 2)
+			var pixel_y = int(local_pos.y + img_size.y / 2)
+			
+			add_black_circle_to_spritemask(pixel_x, pixel_y);
 
 ## Throws an error for every fundamental element of the minigame that isn't set.
 func verify_assumptions() -> void:
 	if wrapping_layer == null:
 		push_error("[CONFIG ERROR] Krembo is missing `wrapping_layer`");
+	if outer_chocolate_layer == null:
+		push_error("[CONFIG ERROR] Krembo is missing `outer_chocolate_layer`");
+	if unwrap_sfx_node == null:
+		push_error("[CONFIG ERROR] Krembo is missing `unwrap_sfx_node`");
+	if bite_sfx_node == null:
+		push_error("[CONFIG ERROR] Krembo is missing `bite_sfx_node`");
+	
 
 ## Given a layer of krembo, creates a mask for it that is manipulated on click.
 func create_mask_layer(krembo_layer: Sprite2D) -> void:
@@ -53,20 +73,65 @@ func create_mask_layer(krembo_layer: Sprite2D) -> void:
 		for y in range(sprite_dimensions.y):
 			var alpha_value = sprite_image.get_pixel(x, y).a;
 			if alpha_value > 0:
+				white_pixels_to_fill_for_current_layer += 1;
 				mask_image_for_current_layer.set_pixel(x, y, Color.WHITE);
 			else:
 				mask_image_for_current_layer.set_pixel(x, y, Color.BLACK);
 	
 	mask_texture_for_current_layer = ImageTexture.create_from_image(mask_image_for_current_layer);
 	
-	mask_node_for_current_layer = Sprite2D.new();
-	mask_node_for_current_layer.texture = mask_texture_for_current_layer;
-	mask_node_for_current_layer.clip_children = CanvasItem.CLIP_CHILDREN_ONLY;
-	
-	krembo_layer.get_parent().add_child(mask_node_for_current_layer);
-	krembo_layer.reparent(mask_node_for_current_layer);
+	var shader_material = ShaderMaterial.new()
+	var shader = Shader.new()
+	shader.code = """
+	shader_type canvas_item;
 
+	uniform sampler2D mask_texture;
+	uniform float hframes;
+	uniform float vframes;
+	uniform float frame;
+
+	void fragment() {
+	    vec4 col = texture(TEXTURE, UV);
+	    
+	    float frame_x = mod(frame, hframes) / hframes;
+	    float frame_y = floor(frame / hframes) / vframes;
+	    
+	    // UV within just this frame (0 to 1)
+	    vec2 frame_uv = vec2(
+	        (UV.x - frame_x) * hframes,
+	        (UV.y - frame_y) * vframes
+	    );
+	    
+	    vec4 mask = texture(mask_texture, frame_uv);
+	    col.a *= mask.r;
+	    COLOR = col;
+	}
+	""";
+	shader_material.shader = shader
+	shader_material.set_shader_parameter("hframes", float(krembo_layer.hframes));
+	shader_material.set_shader_parameter("vframes", float(krembo_layer.vframes));
+	shader_material.set_shader_parameter("frame", float(krembo_layer.frame));
+	shader_material.set_shader_parameter("mask_texture", mask_texture_for_current_layer)
+	krembo_layer.material = shader_material
+	
+	current_layer = krembo_layer;
 
 ## Given an appropriate X and Y, creates a black circle in the texture image, with the X and Y being its center.
-func add_black_circle_to_spritemask(x: int, y: int) -> void:
-	pass # TODO
+func add_black_circle_to_spritemask(center_x: int, center_y: int) -> void:
+	var white_pixels_before_bite = white_pixels_to_fill_for_current_layer;
+	
+	for y in range(center_y - bite_radius, center_y + bite_radius + 1):
+		for x in range(center_x - bite_radius, center_x + bite_radius + 1):
+			var dx = x - center_x;
+			var dy = y - center_y;
+			if dx * dx + dy * dy <= bite_radius * bite_radius:
+				if x >= 0 and x < mask_image_for_current_layer.get_width() and y >= 0 and y < mask_image_for_current_layer.get_height():
+					if mask_image_for_current_layer.get_pixel(x, y) != Color.BLACK:
+						white_pixels_to_fill_for_current_layer -= 1;
+						mask_image_for_current_layer.set_pixel(x, y, Color.BLACK);
+	
+	mask_texture_for_current_layer.update(mask_image_for_current_layer);
+	current_layer.set_instance_shader_parameter("mask_texture", mask_texture_for_current_layer);
+	print("BITE TAKEN! Remaining white pixels: %s" % white_pixels_to_fill_for_current_layer);
+	if white_pixels_to_fill_for_current_layer != white_pixels_before_bite:
+		bite_sfx_node.play();
