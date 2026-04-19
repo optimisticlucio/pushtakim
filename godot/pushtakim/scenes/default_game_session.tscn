@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://l8eovshfqd7b" path="res://scripts/play_sound_on_player_victory.gd" id="4_4vpq8"]
 [ext_resource type="PackedScene" uid="uid://clc6u88es5ohd" path="res://scenes/microgames/tropit.tscn" id="4_s0jge"]
 [ext_resource type="PackedScene" uid="uid://bg01665km0270" path="res://scenes/microgames/mamad.tscn" id="4_ylu52"]
+[ext_resource type="PackedScene" uid="uid://rn053348bflm" path="res://scenes/microgames/krembo.tscn" id="5_ylu52"]
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
-microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("4_ylu52")])
+microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("4_ylu52"), ExtResource("5_ylu52")])
 microgame_holding_node = NodePath("MicrogameHolder")
 overlay_node = NodePath("TestOverlay")
 break_time_between_minigames = 2.0

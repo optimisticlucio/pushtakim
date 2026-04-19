@@ -73,7 +73,6 @@ func get_percentage_of_tropit_left() -> float:
 
 ## Takes a sip of the tropit.
 func sip_drink() -> void:
-	print("Sip drink called, amount of sips left is %s" % amount_of_sips_left);
 	if seconds_since_last_sip < spacing_between_sips_in_second:
 		return; # Hasn't been long enough to sip again.
 	
@@ -93,8 +92,6 @@ func sip_drink() -> void:
 		if !sipping_noise_node.playing:
 			sipping_noise_node.play(0);
 			animation_handler.play("sip");
-
-		# TODO: play sip animation.
 		pass
 
 func _input(event: InputEvent) -> void:
@@ -105,6 +102,4 @@ func _input(event: InputEvent) -> void:
 ## Update the tropit to look as drank-through as it is.
 func update_tropit_sprite() -> void:
 	var frame_amount = tropit_sprite_node.hframes * tropit_sprite_node.vframes;
-	print("Percentage left: %s" % get_percentage_of_tropit_left())
 	tropit_sprite_node.frame = round((1 - get_percentage_of_tropit_left()) * (frame_amount - 1));
-	print("Frame set to: %s " % tropit_sprite_node.frame)

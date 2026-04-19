@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://rn053348bflm"]
+
+[ext_resource type="Script" uid="uid://x81fbyx34nq3" path="res://scripts/microgames/krembo.gd" id="1_k1hyc"]
+[ext_resource type="PackedScene" uid="uid://cdrsugkf7a4hq" path="res://scenes/microgames/krembo/the_krembo_in_question.tscn" id="2_yyjob"]
+
+[node name="Krembo" type="Node2D" unique_id=136548885 node_paths=PackedStringArray("the_krembo")]
+script = ExtResource("1_k1hyc")
+the_krembo = NodePath("TheKremboInQuestion")
+length_in_seconds = 5.0
+
+[node name="TheKremboInQuestion" parent="." unique_id=1234685278 instance=ExtResource("2_yyjob")]
+position = Vector2(580, 270)
+scale = Vector2(1.095, 1.095)
+uneaten_pixel_leniency_percentage = 0.2

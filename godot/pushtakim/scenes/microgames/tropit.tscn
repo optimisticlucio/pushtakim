@@ -80,7 +80,7 @@ satisfied_noise_node = NodePath("SatisfiedNoise")
 animation_handler = NodePath("AnimationPlayer")
 microgame_name = "Tropit"
 hebrew_action_verb = "לשתות"
-length_in_seconds = 8.0
+length_in_seconds = 7.0
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2133373238]
 position = Vector2(575.0442, 333.5265)

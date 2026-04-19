@@ -12,6 +12,7 @@ outer_chocolate_layer = NodePath("OuterChocolate")
 bite_radius = 50
 unwrap_sfx_node = NodePath("UnwrapSFX")
 bite_sfx_node = NodePath("BiteSFX")
+uneaten_pixel_leniency_percentage = 0.5
 
 [node name="OuterChocolate" type="Sprite2D" parent="." unique_id=486154360]
 texture = ExtResource("1_2fg6x")
@@ -19,12 +20,12 @@ hframes = 3
 frame = 1
 
 [node name="TopLayerKrembo" type="Sprite2D" parent="." unique_id=1367859924]
-position = Vector2(200, 200)
 texture = ExtResource("1_2fg6x")
 hframes = 3
 
 [node name="UnwrapSFX" type="AudioStreamPlayer" parent="." unique_id=113966085]
 stream = ExtResource("3_xxglo")
+volume_db = -9.123
 
 [node name="BiteSFX" type="AudioStreamPlayer" parent="." unique_id=1196130655]
 stream = ExtResource("4_hq8gg")

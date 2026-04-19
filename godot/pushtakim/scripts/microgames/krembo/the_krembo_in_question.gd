@@ -1,4 +1,4 @@
-extends Node2D
+class_name TheKremboInQuestion extends Node2D
 
 ## The sprite layer of the krembo wrapping.
 @export
@@ -7,10 +7,6 @@ var wrapping_layer: Sprite2D = null;
 ## The sprite layer of the krembo outer chocolate.
 @export
 var outer_chocolate_layer: Sprite2D = null;
-
-## The sprite layer of the krembo inner chocolate. If missing, will end minigame after outer chocolate eaten.
-@export
-var inner_layer: Sprite2D = null;
 
 ## The radius of bites by users.
 @export
@@ -24,22 +20,37 @@ var unwrap_sfx_node: AudioStreamPlayer = null;
 @export
 var bite_sfx_node: AudioStreamPlayer = null;
 
+## The max percentage of pixels that we allow the player to not finish eating, as a number between 0 to 100;
+## This is to help with cases where there's a phantom pixel uneaten.
+@export
+var uneaten_pixel_leniency_percentage: float = 5;
+
+## The max amount of pixels that we allow the player to not finish eating.
+var uneaten_pixel_leniency: int = 0;
+
 var mask_image_for_current_layer: Image = null;
 var mask_texture_for_current_layer: ImageTexture = null;
 var current_layer: Sprite2D = null;
 ## The amount of white pixels left to eat in this image.
 var white_pixels_to_fill_for_current_layer: int = 0;
 
+## Triggers when the krembo has been fully eaten.
+signal krembo_eaten;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	verify_assumptions();
-	
-	create_mask_layer(wrapping_layer);
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if mask_texture_for_current_layer == null:
+			if wrapping_layer != null:
+				# Unwrap the krembo
+				wrapping_layer.free();
+				unwrap_sfx_node.play();
+				create_mask_layer(outer_chocolate_layer);
 			return;
+		# Eat the krembo
 		if current_layer.get_rect().has_point(current_layer.to_local(event.global_position)):
 			var local_pos = current_layer.to_local(event.global_position)
 			var img_size = current_layer.get_rect().size
@@ -47,6 +58,13 @@ func _input(event: InputEvent) -> void:
 			var pixel_y = int(local_pos.y + img_size.y / 2)
 			
 			add_black_circle_to_spritemask(pixel_x, pixel_y);
+			if white_pixels_to_fill_for_current_layer <= uneaten_pixel_leniency:
+				current_layer.free();
+				mask_image_for_current_layer = null;
+				mask_texture_for_current_layer = null;
+				white_pixels_to_fill_for_current_layer = 0;
+				
+				krembo_eaten.emit();
 
 ## Throws an error for every fundamental element of the minigame that isn't set.
 func verify_assumptions() -> void:
@@ -113,6 +131,8 @@ func create_mask_layer(krembo_layer: Sprite2D) -> void:
 	shader_material.set_shader_parameter("frame", float(krembo_layer.frame));
 	shader_material.set_shader_parameter("mask_texture", mask_texture_for_current_layer)
 	krembo_layer.material = shader_material
+	
+	uneaten_pixel_leniency = white_pixels_to_fill_for_current_layer * uneaten_pixel_leniency_percentage / 100;
 	
 	current_layer = krembo_layer;
 
