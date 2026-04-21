@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dvnmoqov5lsh7"]
+
+[ext_resource type="Script" uid="uid://vq6woq6otpds" path="res://scripts/microgames/moovit/moovit_ad.gd" id="1_o7hac"]
+[ext_resource type="Texture2D" uid="uid://coaeof7mp2cnv" path="res://assets/img/test_imgs/fuck_you_baltimore.webp" id="2_jbmg0"]
+[ext_resource type="Texture2D" uid="uid://cxlr2eo2rodtn" path="res://assets/img/test_imgs/balloon_cat.jpg" id="3_bdseu"]
+[ext_resource type="Texture2D" uid="uid://d2vcbkllaetbl" path="res://assets/img/test_imgs/look_inside_wires.webp" id="4_hstpn"]
+
+[node name="MoovitAd" type="Node2D" unique_id=1757015811]
+script = ExtResource("1_o7hac")
+advertising_images = Array[Texture2D]([ExtResource("2_jbmg0"), ExtResource("3_bdseu"), ExtResource("4_hstpn")])
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=703202508]
+offset_right = 200.0
+offset_bottom = 146.0
+
+[node name="AdImage" type="TextureRect" parent="." unique_id=962487903]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 186.0
+offset_bottom = 133.0
+texture = ExtResource("2_jbmg0")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ExitButton" type="Button" parent="." unique_id=652736012]
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 59.0
+offset_bottom = 40.0
+text = "X"
