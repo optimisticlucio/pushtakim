@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d3dxmxm4tfmu2"]
+
+[ext_resource type="Script" uid="uid://n406eecdye8r" path="res://scripts/microgames/moovit.gd" id="1_fpigg"]
+[ext_resource type="PackedScene" uid="uid://dvnmoqov5lsh7" path="res://scenes/microgames/moovit/moovit_ad.tscn" id="2_j30hq"]
+
+[node name="Moovit" type="Node2D" unique_id=382757718 node_paths=PackedStringArray("ad_spawn_area")]
+script = ExtResource("1_fpigg")
+ad_spawn_area = NodePath("Control")
+moovit_ad = ExtResource("2_j30hq")
+microgame_name = "Moovit Ads"
+hebrew_action_verb = "לסגור"
+length_in_seconds = 6.0
+
+[node name="Control" type="Control" parent="." unique_id=1619452546]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 127.0
+offset_top = 66.0
+offset_right = 935.0
+offset_bottom = 519.0
