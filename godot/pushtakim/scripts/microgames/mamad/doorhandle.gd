@@ -18,6 +18,14 @@ var victory_degrees_left: int = 85;
 @export
 var handle_spin_speed: float = 20;
 
+## The sprite shown when the mouse is not actively hovering over the handle
+@export 
+var default_sprite: Texture2D = null;
+
+## The sprite shown when the mouse _is_ actively hovering over the handle
+@export 
+var onhover_sprite: Texture2D = null;
+
 ## Whether the player is actively dragging the door handle.
 var is_dragging: bool = false;
 
@@ -30,47 +38,65 @@ signal door_was_locked;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$TestHandle.texture = default_sprite;
+	$MetalScrapingSFX.stop();
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	# If you're holding down the handle, set is dragging to true.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			is_dragging = true
+			
 
 func _input(event: InputEvent) -> void:
 	# If you let go of the mouse ANYWHERE on the screen, stop dragging.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed:
 			is_dragging = false
+			$MetalScrapingSFX.stop();
+
+func _mouse_enter() -> void:
+	$TestHandle.texture = onhover_sprite;
+
+func _mouse_exit() -> void:
+	$TestHandle.texture = default_sprite;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if is_dragging:
-		spin_handle_towards_mouse(delta);
+	if is_dragging && spin_handle_towards_mouse(delta):
+		if $MetalScrapingSFX.playing == false:
+			$MetalScrapingSFX.play();
+	else: 
+		$MetalScrapingSFX.stop();
 	
 	if rotation_degrees > victory_degrees_left and !signal_was_fired:
 		door_was_locked.emit();
 		signal_was_fired = true;
 
 ## When ran, spins the handle towards the mouse's current position, acknowledging the max degrees and deltatime.
-func spin_handle_towards_mouse(delta: float) -> void:
+## Returns whether or not the handle spinned.
+func spin_handle_towards_mouse(delta: float) -> bool:
+	# ASSUMPTION: We are aiming upwards.
+	var handle_should_move = true;
 	var mouse_position = get_global_mouse_position();
 	var local_mouse = to_local(mouse_position);
 	
-	var movement_modifier = 1 if local_mouse.x < 0 else -1
+	var movement_modifier = 1 if local_mouse.y < 0 else -1
 	
 	var next_mouse_degrees = rotation_degrees;
 	
 	next_mouse_degrees += movement_modifier * delta * handle_spin_speed;
 	
 	if next_mouse_degrees > max_degrees_left:
-		next_mouse_degrees = max_degrees_left;
+		handle_should_move = false;
 	
 	if next_mouse_degrees < -max_degrees_right:
-		next_mouse_degrees = -max_degrees_right;
+		handle_should_move = false;
 	
 	if signal_was_fired && next_mouse_degrees < victory_degrees_left:
-		next_mouse_degrees = victory_degrees_left;
+		handle_should_move = false;
 	
-	rotation_degrees = next_mouse_degrees;
+	if handle_should_move:
+		rotation_degrees = next_mouse_degrees;
+	
+	return handle_should_move;

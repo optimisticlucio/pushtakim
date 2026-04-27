@@ -1,15 +1,26 @@
 [gd_scene format=3 uid="uid://bkgjiampw8arw"]
 
 [ext_resource type="Script" uid="uid://bs7w6ttg4f8da" path="res://scripts/microgames/mamad/doorhandle.gd" id="1_bjjrk"]
-[ext_resource type="Texture2D" uid="uid://d1s03momsbqar" path="res://assets/img/microgames/mamad/test_handle.png" id="2_frjor"]
+[ext_resource type="Texture2D" uid="uid://do7axg6cpyd1l" path="res://assets/img/microgames/mamad/lock_handle_1.png" id="2_bjjrk"]
+[ext_resource type="Texture2D" uid="uid://b1nkaraubk2nw" path="res://assets/img/microgames/mamad/lock_handle_2.png" id="3_frjor"]
+[ext_resource type="AudioStream" uid="uid://b02dye3m7lubr" path="res://assets/audio/microgames/mamad/metal_scraping.wav" id="4_cbtmx"]
 
 [node name="DoorHandle" type="Area2D" unique_id=1890230890]
 script = ExtResource("1_bjjrk")
+default_sprite = ExtResource("2_bjjrk")
+onhover_sprite = ExtResource("3_frjor")
+
+[node name="MetalScrapingSFX" type="AudioStreamPlayer" parent="." unique_id=1288603]
+stream = ExtResource("4_cbtmx")
+volume_db = -5.474
 
 [node name="TestHandle" type="Sprite2D" parent="." unique_id=1656875968]
-position = Vector2(-2, 72)
-texture = ExtResource("2_frjor")
+position = Vector2(-88, 0)
+rotation = 0.0005543232
+scale = Vector2(0.74342084, 0.7434209)
+texture = ExtResource("2_bjjrk")
 
 [node name="GrabbableArea" type="CollisionPolygon2D" parent="." unique_id=326315574]
-position = Vector2(0, -1)
-polygon = PackedVector2Array(2, 206, 10, 60, 45, 49, -51, 38, -30, 57, -34, 202)
+position = Vector2(-35.00001, 15.999996)
+rotation = 1.5713507
+polygon = PackedVector2Array(6, 204, 10, 39, 20, 35, 22, 4, -51, 3, -50, 32, -38, 35, -37, 204)
