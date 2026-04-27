@@ -132,7 +132,7 @@ func create_mask_layer(krembo_layer: Sprite2D) -> void:
 	shader_material.set_shader_parameter("mask_texture", mask_texture_for_current_layer)
 	krembo_layer.material = shader_material
 	
-	uneaten_pixel_leniency = white_pixels_to_fill_for_current_layer * uneaten_pixel_leniency_percentage / 100;
+	uneaten_pixel_leniency = ceil(white_pixels_to_fill_for_current_layer * uneaten_pixel_leniency_percentage / 100.0);
 	
 	current_layer = krembo_layer;
 

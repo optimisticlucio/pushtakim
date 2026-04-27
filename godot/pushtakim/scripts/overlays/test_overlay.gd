@@ -32,9 +32,11 @@ func _process(delta: float) -> void:
 
 func on_player_win() -> void:
 	player_won_node.visible = true;
+	time_left_in_microgame = 0;
 
 func on_player_loss() -> void:
 	player_loss_node.visible = true;
+	time_left_in_microgame = 0;
 
 func reset() -> void:
 	player_won_node.visible = false;

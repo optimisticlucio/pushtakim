@@ -51,6 +51,9 @@ signal player_lost_microgame;
 func _ready() -> void:
 	setup_variables();
 	
+	player_won_microgame.connect(end_microgame_early);
+	player_lost_microgame.connect(end_microgame_early);
+	
 	start_new_microgame();
 
 func _process(delta: float) -> void:
@@ -61,6 +64,10 @@ func _process(delta: float) -> void:
 			current_loaded_microgame.set_default_victory_state();
 			if current_loaded_microgame.length_in_seconds + post_minigame_wait_period_in_seconds < seconds_on_current_microgame:
 				replace_current_microgame();
+
+## When ran, enters the microgame into the ending phase.
+func end_microgame_early() -> void:
+	seconds_on_current_microgame = current_loaded_microgame.length_in_seconds;
 
 ## Function that's run every time a microgame ends. Cleans up the current microgame, shows info to player, and then loads up a new one.
 func replace_current_microgame():

@@ -9,7 +9,7 @@ script = ExtResource("1_rfvtp")
 doorhandle = NodePath("DoorHandle")
 microgame_name = "Mamad Door"
 hebrew_action_verb = "לסגור"
-length_in_seconds = 5.0
+length_in_seconds = 6.0
 
 [node name="TestDoor" type="Sprite2D" parent="." unique_id=1134229170]
 position = Vector2(575.00006, 323)

@@ -10,21 +10,23 @@ script = ExtResource("1_o7hac")
 advertising_images = Array[Texture2D]([ExtResource("2_jbmg0"), ExtResource("3_bdseu"), ExtResource("4_hstpn")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=703202508]
-offset_right = 200.0
-offset_bottom = 146.0
+offset_left = -96.0
+offset_top = -67.0
+offset_right = 104.0
+offset_bottom = 79.0
 
 [node name="AdImage" type="TextureRect" parent="." unique_id=962487903]
-offset_left = 12.0
-offset_top = 10.0
-offset_right = 186.0
-offset_bottom = 133.0
+offset_left = -84.0
+offset_top = -57.0
+offset_right = 90.0
+offset_bottom = 66.0
 texture = ExtResource("2_jbmg0")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="ExitButton" type="Button" parent="." unique_id=652736012]
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 59.0
-offset_bottom = 40.0
+offset_left = -88.0
+offset_top = -60.0
+offset_right = -37.0
+offset_bottom = -27.0
 text = "X"
