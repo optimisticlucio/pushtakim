@@ -152,6 +152,5 @@ func add_black_circle_to_spritemask(center_x: int, center_y: int) -> void:
 	
 	mask_texture_for_current_layer.update(mask_image_for_current_layer);
 	current_layer.set_instance_shader_parameter("mask_texture", mask_texture_for_current_layer);
-	print("BITE TAKEN! Remaining white pixels: %s" % white_pixels_to_fill_for_current_layer);
 	if white_pixels_to_fill_for_current_layer != white_pixels_before_bite:
 		bite_sfx_node.play();

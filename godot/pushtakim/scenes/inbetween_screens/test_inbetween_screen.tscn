@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bs13nsri2biim"]
+
+[ext_resource type="Script" uid="uid://dskhfogrrdgpw" path="res://scripts/inbetween_screens/test_inbetween_screen.gd" id="1_to0qq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgo8v"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_to0qq"]
+font_size = 100
+font_color = Color(0.5019608, 0.5019608, 0, 1)
+
+[node name="TestInbetweenScreen" type="Node2D" unique_id=870047627]
+script = ExtResource("1_to0qq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1874104660]
+offset_left = 243.0
+offset_top = 147.0
+offset_right = 896.0
+offset_bottom = 462.0
+color = Color(1, 0.8352941, 0, 1)
+
+[node name="AndNow" type="Label" parent="." unique_id=2117498642]
+offset_left = 488.0
+offset_top = 169.0
+offset_right = 630.0
+offset_bottom = 236.0
+text = "ועכשיו,"
+label_settings = SubResource("LabelSettings_lgo8v")
+horizontal_alignment = 1
+
+[node name="ActionVerb" type="Label" parent="." unique_id=252326742]
+offset_left = 245.0
+offset_top = 239.0
+offset_right = 888.0
+offset_bottom = 456.0
+text = "לבצע!"
+label_settings = SubResource("LabelSettings_to0qq")
+horizontal_alignment = 1

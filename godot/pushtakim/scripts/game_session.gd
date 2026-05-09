@@ -5,6 +5,10 @@ class_name GameSession extends Node2D
 @export
 var microgames_for_this_session: Array[PackedScene] = [];
 
+## The inbetween screens that may appear between minigames. Should not be modified during runtime.
+@export
+var inbetween_screens_for_this_session: Array[PackedScene] = [];
+
 ## The amount of lives a player starts with. Should not be modified during runtime.
 @export
 var starting_lives: int = 3;
@@ -40,6 +44,9 @@ var seconds_on_current_microgame: float = 0;
 ## MAY BE NULL. Points towards the loaded microgame scene. If it's null, we don't have a microgame loaded.
 var current_loaded_microgame: Microgame = null;
 
+## SHOULD NOT BE NULL. Points towards the next microgame we'll be giving the player.
+var next_microgame: Microgame = null;
+
 ## Signal that triggers the moment a player completes the microgame win condition. Triggered by the microgame, this just passes it forward.
 signal player_won_microgame;
 
@@ -54,6 +61,7 @@ func _ready() -> void:
 	player_won_microgame.connect(end_microgame_early);
 	player_lost_microgame.connect(end_microgame_early);
 	
+	await show_inbetween_screen();
 	start_new_microgame();
 
 func _process(delta: float) -> void:
@@ -73,8 +81,7 @@ func end_microgame_early() -> void:
 func replace_current_microgame():
 	handle_finished_microgame();
 	
-	# TODO: Show info to user
-	await get_tree().create_timer(break_time_between_minigames).timeout;
+	await show_inbetween_screen();
 	
 	start_new_microgame();
 
@@ -109,6 +116,9 @@ func setup_variables() -> void:
 	overlay_node.visible = false;
 	player_won_microgame.connect(overlay_node.on_player_win);
 	player_lost_microgame.connect(overlay_node.on_player_loss);
+	
+	# And load our first microgame.
+	next_microgame = available_microgames.pop_front().instantiate();
 
 ## Returns true if the given PackedScene's root node is a Microgame node.
 func is_microgame_scene(packed_scene: PackedScene) -> bool:
@@ -122,16 +132,16 @@ func is_microgame_scene(packed_scene: PackedScene) -> bool:
 				script = script.get_base_script()
 	return false
 
+## Sets the next microgame. Should be run before `start_new_microgame` or `show_inbetween_screen` so they both have relevant data to show.
 
 ## When called, instantiates a new microgame for the player.
 func start_new_microgame() -> void:
 	if available_microgames.is_empty():
 		push_error("[RUNTIME ERROR] Ran `start_new_microgame` when `available_microgames` was already exhausted. Make more microgames or shorten the game!");
 	
-	# available_microgames is enforced to only be microgames during setup.
-	var next_microgame = available_microgames.pop_front();
-	
-	current_loaded_microgame = next_microgame.instantiate();
+	current_loaded_microgame = next_microgame;
+	# Next_microgame should never be pointing at the same game as the current one.
+	next_microgame = available_microgames.pop_front().instantiate();
 	
 	# Connect the relevant signals.
 	current_loaded_microgame.player_wins_at_microgame.connect(player_won_microgame.emit);
@@ -163,3 +173,15 @@ func handle_finished_microgame() -> void:
 		remaining_lives -= 1;
 		
 		# TODO: If player's lives are at zero, show loss screen.
+
+## When called, shows a random inbetween screen to the player for `break_time_between_minigames` seconds.
+func show_inbetween_screen() -> void:
+	var inbetween_screen_scene: InbetweenScreen = inbetween_screens_for_this_session.pick_random().instantiate();
+	
+	inbetween_screen_scene.set_action_verb(next_microgame.hebrew_action_verb);
+	
+	self.add_child(inbetween_screen_scene);
+	
+	await get_tree().create_timer(break_time_between_minigames).timeout;
+	
+	inbetween_screen_scene.queue_free();

@@ -9,7 +9,7 @@
 script = ExtResource("1_rfvtp")
 doorhandle = NodePath("DoorHandle")
 microgame_name = "Mamad Door"
-hebrew_action_verb = "לסגור"
+hebrew_action_verb = "לנעול"
 length_in_seconds = 6.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1707933961]
