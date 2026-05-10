@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cqnqw2horpj32"]
+
+[ext_resource type="Script" uid="uid://c04bmw7oiitfn" path="res://scripts/microgames/schnitzel.gd" id="1_qcfgj"]
+[ext_resource type="Texture2D" uid="uid://by3aar8voxrjy" path="res://assets/img/microgames/schnitzel/spritemap.png" id="2_6nxf6"]
+[ext_resource type="PackedScene" uid="uid://2lnr6fyc42t3" path="res://scenes/microgames/schnitzel/fork.tscn" id="3_62lnx"]
+[ext_resource type="AudioStream" uid="uid://crwoenpsiuty8" path="res://assets/audio/microgames/schnitzel/meow.wav" id="4_o073s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nxf6"]
+size = Vector2(70.9375, 420.375)
+
+[node name="Schnitzel" type="Node2D" unique_id=1360672386 node_paths=PackedStringArray("bitedown_area", "schnitzel_fork", "open_mouth_sprite", "closed_mouth_sprite", "victory_sfx")]
+script = ExtResource("1_qcfgj")
+bitedown_area = NodePath("MunchArea")
+schnitzel_fork = NodePath("Fork")
+open_mouth_sprite = NodePath("Open Mouth")
+closed_mouth_sprite = NodePath("Closed Mouth")
+victory_sfx = NodePath("Meow")
+microgame_name = "Schnitzel Eating"
+hebrew_action_verb = "לאכול"
+length_in_seconds = 4.0
+
+[node name="Fork" parent="." unique_id=494767471 instance=ExtResource("3_62lnx")]
+position = Vector2(1037, 342)
+scale = Vector2(1.485, 1.485)
+
+[node name="Open Mouth" type="Sprite2D" parent="." unique_id=2144207074]
+position = Vector2(-66, -87)
+scale = Vector2(1.9813951, 1.9813951)
+texture = ExtResource("2_6nxf6")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 215, 357.5)
+
+[node name="Closed Mouth" type="Sprite2D" parent="." unique_id=1440891255]
+position = Vector2(179, 263)
+rotation = 0.116937056
+scale = Vector2(2.3520808, 2.3700068)
+texture = ExtResource("2_6nxf6")
+region_enabled = true
+region_rect = Rect2(236, 40.5, 222, 286)
+
+[node name="MunchArea" type="Area2D" parent="." unique_id=1735410408]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MunchArea" unique_id=679494541]
+position = Vector2(66, 245)
+shape = SubResource("RectangleShape2D_6nxf6")
+
+[node name="Meow" type="AudioStreamPlayer" parent="." unique_id=332264824]
+stream = ExtResource("4_o073s")

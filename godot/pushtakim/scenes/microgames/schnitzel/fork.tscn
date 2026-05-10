@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://2lnr6fyc42t3"]
+
+[ext_resource type="Script" uid="uid://cwuf6qydbdp0o" path="res://scripts/microgames/schnitzel/schnitzel_fork.gd" id="1_rmha5"]
+[ext_resource type="Texture2D" uid="uid://by3aar8voxrjy" path="res://assets/img/microgames/schnitzel/spritemap.png" id="2_8rxi3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa6yd"]
+size = Vector2(102, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rium"]
+size = Vector2(220, 64)
+
+[node name="Fork" type="Area2D" unique_id=494767471 node_paths=PackedStringArray("food_area")]
+script = ExtResource("1_rmha5")
+food_area = NodePath("BitedownArea")
+
+[node name="BitedownArea" type="Area2D" parent="." unique_id=894230332]
+position = Vector2(-5, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BitedownArea" unique_id=1546439704]
+position = Vector2(-164, -4)
+shape = SubResource("RectangleShape2D_qa6yd")
+
+[node name="Spritemap" type="Sprite2D" parent="." unique_id=189325344]
+position = Vector2(-57, 2)
+texture = ExtResource("2_8rxi3")
+region_enabled = true
+region_rect = Rect2(24, 426.5, 340, 135)
+
+[node name="HandleArea" type="CollisionShape2D" parent="." unique_id=841284492]
+position = Vector2(-5, 3)
+shape = SubResource("RectangleShape2D_1rium")
