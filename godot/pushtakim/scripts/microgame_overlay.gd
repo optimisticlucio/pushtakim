@@ -9,9 +9,15 @@
 ## If you reimplement `_process`, remember to call `super._process` at the start.
 
 var time_left_in_microgame: float = 0;
+var total_microgame_length: float = 0;
 
 func set_variables(microgame_length: float) -> void:
 	time_left_in_microgame = microgame_length;
+	total_microgame_length = microgame_length;
+
+## Returns a float between 0 to 1 representing what percent of the microgame is left.
+func get_time_percent_left() -> float:
+	return time_left_in_microgame / total_microgame_length;
 
 ## Function that's run when the parent game session says the player won.
 @abstract func on_player_win() -> void;

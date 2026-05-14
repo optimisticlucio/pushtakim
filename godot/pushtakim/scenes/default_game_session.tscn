@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://xvpldg53rm0h"]
 
 [ext_resource type="Script" uid="uid://d1wvr5445tewe" path="res://scripts/game_session.gd" id="1_whdcj"]
-[ext_resource type="PackedScene" uid="uid://432igylw606k" path="res://scenes/overlays/test_overlay.tscn" id="3_4vpq8"]
 [ext_resource type="PackedScene" uid="uid://bd4r6mlbyyq4m" path="res://scenes/microgames/salute.tscn" id="3_kc1oo"]
 [ext_resource type="AudioStream" uid="uid://ccdbv7pnmbtqg" path="res://assets/audio/nice.mp3" id="3_mtpdp"]
 [ext_resource type="Script" uid="uid://l8eovshfqd7b" path="res://scripts/play_sound_on_player_victory.gd" id="4_4vpq8"]
@@ -11,20 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://d3dxmxm4tfmu2" path="res://scenes/microgames/moovit.tscn" id="6_7xyan"]
 [ext_resource type="PackedScene" uid="uid://cqnqw2horpj32" path="res://scenes/microgames/schnitzel.tscn" id="7_7lj2p"]
 [ext_resource type="PackedScene" uid="uid://bs13nsri2biim" path="res://scenes/inbetween_screens/test_inbetween_screen.tscn" id="7_8x1xg"]
+[ext_resource type="PackedScene" uid="uid://di4ui8d2p6iew" path="res://scenes/overlays/can_overlay.tscn" id="9_7lj2p"]
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
 microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("4_ylu52"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p")])
 inbetween_screens_for_this_session = Array[PackedScene]([ExtResource("7_8x1xg")])
 microgame_holding_node = NodePath("MicrogameHolder")
-overlay_node = NodePath("TestOverlay")
+overlay_node = NodePath("CanOverlay")
 break_time_between_minigames = 2.0
 post_minigame_wait_period_in_seconds = 1.5
 metadata/_custom_type_script = "uid://d1wvr5445tewe"
 
 [node name="MicrogameHolder" type="Node2D" parent="." unique_id=2025458168]
 
-[node name="TestOverlay" parent="." unique_id=1803062742 instance=ExtResource("3_4vpq8")]
+[node name="CanOverlay" parent="." unique_id=19033801 instance=ExtResource("9_7lj2p")]
 
 [node name="PlayerSuccessNoise" type="AudioStreamPlayer" parent="." unique_id=478529751 node_paths=PackedStringArray("parent_game_session")]
 stream = ExtResource("3_mtpdp")

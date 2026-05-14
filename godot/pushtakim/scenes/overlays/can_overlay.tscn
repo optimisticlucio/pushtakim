@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dorvhdg6goxuw" path="res://assets/img/overlays/can_overlay/can.png" id="1_2tt1o"]
 [ext_resource type="Shader" uid="uid://b7qqlgx2as1od" path="res://shaders/overlays/can_overlay.gdshader" id="1_5ywwx"]
+[ext_resource type="Script" uid="uid://ni31clr1pyp0" path="res://scripts/overlays/can_overlay.gd" id="1_vn45d"]
 [ext_resource type="Script" uid="uid://dywrt177k7vci" path="res://scripts/overlays/can_overlay_masker.gd" id="2_5ywwx"]
 [ext_resource type="Texture2D" uid="uid://3m47akapkulj" path="res://assets/img/overlays/can_overlay/fuse.png" id="3_mosyd"]
 [ext_resource type="Texture2D" uid="uid://ch366ey8to6hy" path="res://assets/img/overlays/can_overlay/spark.png" id="5_mosyd"]
@@ -24,7 +25,9 @@ _data = {
 }
 point_count = 13
 
-[node name="CanOverlay" type="Node2D" unique_id=19033801]
+[node name="CanOverlay" type="Node2D" unique_id=19033801 node_paths=PackedStringArray("spark_sprite")]
+script = ExtResource("1_vn45d")
+spark_sprite = NodePath("Path2D/PathFollow2D/Spark")
 
 [node name="Can" type="Sprite2D" parent="." unique_id=1495026174]
 material = SubResource("ShaderMaterial_mosyd")
@@ -34,13 +37,6 @@ texture = ExtResource("1_2tt1o")
 region_enabled = true
 region_rect = Rect2(114.461975, 227.47223, 470.76526, 558.6404)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=660898134]
-offset_left = 29.0
-offset_top = 26.0
-offset_right = 1105.0
-offset_bottom = 278.0
-expand_mode = 2
-
 [node name="Fuse" type="Sprite2D" parent="." unique_id=2072914785]
 material = SubResource("ShaderMaterial_vn45d")
 position = Vector2(547.9752, 536.00006)
@@ -49,11 +45,10 @@ texture = ExtResource("3_mosyd")
 region_enabled = true
 region_rect = Rect2(284.0437, 119.81122, 2300.469, 659.0702)
 
-[node name="Path2D" type="Path2D" parent="." unique_id=2105141108 node_paths=PackedStringArray("sprite_to_mask", "debug_rect")]
+[node name="Path2D" type="Path2D" parent="." unique_id=2105141108 node_paths=PackedStringArray("sprite_to_mask")]
 curve = SubResource("Curve2D_vn45d")
 script = ExtResource("2_5ywwx")
 sprite_to_mask = NodePath("../Fuse")
-debug_rect = NodePath("../TextureRect")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1920031761]
 position = Vector2(1016, 601)

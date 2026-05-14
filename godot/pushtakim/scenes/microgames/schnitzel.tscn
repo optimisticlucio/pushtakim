@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://crwoenpsiuty8" path="res://assets/audio/microgames/schnitzel/meow.wav" id="4_o073s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nxf6"]
-size = Vector2(70.9375, 420.375)
+size = Vector2(70.9375, 515.1875)
 
 [node name="Schnitzel" type="Node2D" unique_id=1360672386 node_paths=PackedStringArray("bitedown_area", "schnitzel_fork", "open_mouth_sprite", "closed_mouth_sprite", "victory_sfx")]
 script = ExtResource("1_qcfgj")
@@ -25,16 +25,16 @@ scale = Vector2(1.485, 1.485)
 
 [node name="Open Mouth" type="Sprite2D" parent="." unique_id=2144207074]
 position = Vector2(-66, -87)
-scale = Vector2(1.9813951, 1.9813951)
+scale = Vector2(2.3860464, 2.3860466)
 texture = ExtResource("2_6nxf6")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 215, 357.5)
 
 [node name="Closed Mouth" type="Sprite2D" parent="." unique_id=1440891255]
-position = Vector2(179, 263)
+position = Vector2(230.72557, 324.6124)
 rotation = 0.116937056
-scale = Vector2(2.3520808, 2.3700068)
+scale = Vector2(3.0241706, 2.970089)
 texture = ExtResource("2_6nxf6")
 region_enabled = true
 region_rect = Rect2(236, 40.5, 222, 286)
@@ -42,7 +42,7 @@ region_rect = Rect2(236, 40.5, 222, 286)
 [node name="MunchArea" type="Area2D" parent="." unique_id=1735410408]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MunchArea" unique_id=679494541]
-position = Vector2(66, 245)
+position = Vector2(84, 309)
 shape = SubResource("RectangleShape2D_6nxf6")
 
 [node name="Meow" type="AudioStreamPlayer" parent="." unique_id=332264824]

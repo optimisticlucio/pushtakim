@@ -113,6 +113,7 @@ func setup_variables() -> void:
 	available_microgames.shuffle();
 	
 	# The overlay should be hidden outside of microgames.
+	overlay_node.set_process(false);
 	overlay_node.visible = false;
 	player_won_microgame.connect(overlay_node.on_player_win);
 	player_lost_microgame.connect(overlay_node.on_player_loss);
@@ -153,6 +154,7 @@ func start_new_microgame() -> void:
 	overlay_node.reset();
 	overlay_node.set_variables(current_loaded_microgame.length_in_seconds);
 	overlay_node.visible = true;
+	overlay_node.set_process(true);
 	
 	seconds_on_current_microgame = 0;
 

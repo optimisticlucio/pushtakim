@@ -1,16 +1,16 @@
-extends Path2D
+class_name CanOverlayMasker extends Path2D
 
 ## The sprite that will be masked according to the path's progress.
 @export var sprite_to_mask: Sprite2D = null;
 @export var duration: float = 3.0
 @onready var path_follow = $PathFollow2D
 
-@export var debug_rect: TextureRect = null;
+## Sets the progress of the flame, from 0 (started) to 1 (finished);
+func set_progress(progress: float):
+	print(progress);
+	path_follow.progress_ratio = progress;
+	sprite_to_mask.material.set_shader_parameter("progress", progress);
 
-func _process(delta):
-	path_follow.progress_ratio += (1.0 / duration) * delta
-	sprite_to_mask.material.set_shader_parameter("progress", path_follow.progress_ratio)
-	print(path_follow.progress_ratio)
 func _ready():
 	var tex_size_full = Vector2(sprite_to_mask.texture.get_size())
 	var region: Rect2
@@ -27,7 +27,6 @@ func _ready():
 
 	var distance_tex = bake_distance_texture()
 	sprite_to_mask.material.set_shader_parameter("distance_tex", distance_tex)
-	debug_rect.texture = distance_tex
 
 
 func bake_distance_texture() -> ImageTexture:
