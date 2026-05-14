@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://di4ui8d2p6iew"]
+
+[ext_resource type="Texture2D" uid="uid://dorvhdg6goxuw" path="res://assets/img/overlays/can_overlay/can.png" id="1_2tt1o"]
+[ext_resource type="Shader" uid="uid://b7qqlgx2as1od" path="res://shaders/overlays/can_overlay.gdshader" id="1_5ywwx"]
+[ext_resource type="Script" uid="uid://dywrt177k7vci" path="res://scripts/overlays/can_overlay_masker.gd" id="2_5ywwx"]
+[ext_resource type="Texture2D" uid="uid://3m47akapkulj" path="res://assets/img/overlays/can_overlay/fuse.png" id="3_mosyd"]
+[ext_resource type="Texture2D" uid="uid://ch366ey8to6hy" path="res://assets/img/overlays/can_overlay/spark.png" id="5_mosyd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mosyd"]
+shader = ExtResource("1_5ywwx")
+shader_parameter/progress = 0.0
+shader_parameter/region_uv_offset = Vector2(0, 0)
+shader_parameter/region_uv_scale = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vn45d"]
+shader = ExtResource("1_5ywwx")
+shader_parameter/progress = 0.0
+shader_parameter/region_uv_offset = Vector2(0, 0)
+shader_parameter/region_uv_scale = Vector2(1, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_vn45d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1016, 601, 0, 0, 0, 0, 576, 608, 0, 0, 0, 0, 284, 616, 0, 0, 0, 0, 239, 610, 0, 0, 0, 0, 212, 592, 0, 0, 0, 0, 200, 534, 0, 0, 0, 0, 182, 482, 0, 0, 0, 0, 159, 467, 0, 0, 0, 0, 133, 456, 0, 0, 0, 0, 107, 459, 0, 0, 0, 0, 92, 467, 0, 0, 0, 0, 81, 480, 0, 0, 0, 0, 79, 511)
+}
+point_count = 13
+
+[node name="CanOverlay" type="Node2D" unique_id=19033801]
+
+[node name="Can" type="Sprite2D" parent="." unique_id=1495026174]
+material = SubResource("ShaderMaterial_mosyd")
+position = Vector2(86.31093, 555.4436)
+scale = Vector2(0.29654926, 0.29654926)
+texture = ExtResource("1_2tt1o")
+region_enabled = true
+region_rect = Rect2(114.461975, 227.47223, 470.76526, 558.6404)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=660898134]
+offset_left = 29.0
+offset_top = 26.0
+offset_right = 1105.0
+offset_bottom = 278.0
+expand_mode = 2
+
+[node name="Fuse" type="Sprite2D" parent="." unique_id=2072914785]
+material = SubResource("ShaderMaterial_vn45d")
+position = Vector2(547.9752, 536.00006)
+scale = Vector2(0.42697802, 0.288126)
+texture = ExtResource("3_mosyd")
+region_enabled = true
+region_rect = Rect2(284.0437, 119.81122, 2300.469, 659.0702)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=2105141108 node_paths=PackedStringArray("sprite_to_mask", "debug_rect")]
+curve = SubResource("Curve2D_vn45d")
+script = ExtResource("2_5ywwx")
+sprite_to_mask = NodePath("../Fuse")
+debug_rect = NodePath("../TextureRect")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1920031761]
+position = Vector2(1016, 601)
+rotation = 3.125685
+
+[node name="Spark" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=1607276241]
+position = Vector2(-25.124084, 7.6012573)
+rotation = -3.125685
+scale = Vector2(0.16414154, 0.16414154)
+texture = ExtResource("5_mosyd")

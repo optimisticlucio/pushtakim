@@ -22,10 +22,6 @@ func set_variables(microgame_length: float) -> void:
 ## Function that should reset all moving parts of this overlay to zero, to be run between microgames.
 @abstract func reset() -> void;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	time_left_in_microgame = max(0, time_left_in_microgame - delta);
