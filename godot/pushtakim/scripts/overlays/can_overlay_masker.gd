@@ -7,7 +7,6 @@ class_name CanOverlayMasker extends Path2D
 
 ## Sets the progress of the flame, from 0 (started) to 1 (finished);
 func set_progress(progress: float):
-	print(progress);
 	path_follow.progress_ratio = progress;
 	sprite_to_mask.material.set_shader_parameter("progress", progress);
 

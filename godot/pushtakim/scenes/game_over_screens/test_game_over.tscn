@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cic0jnvmrcc31"]
+
+[ext_resource type="Script" uid="uid://dc3u64e0mj7f0" path="res://scripts/test_game_over.gd" id="1_s6b3r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0hf3"]
+font_size = 64
+
+[node name="TestGameOver" type="Node2D" unique_id=1894532367]
+script = ExtResource("1_s6b3r")
+
+[node name="Label" type="Label" parent="." unique_id=1692305714]
+offset_left = 336.0
+offset_top = 193.0
+offset_right = 823.0
+offset_bottom = 369.0
+text = "נגמרו לך החיים!
+נגמר המשחק!"
+label_settings = SubResource("LabelSettings_q0hf3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1904669623]
+offset_left = 463.0
+offset_top = 421.0
+offset_right = 680.0
+offset_bottom = 474.0
+text = "לשחק שוב?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
