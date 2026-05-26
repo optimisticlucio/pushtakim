@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://vq6woq6otpds" path="res://scripts/microgames/moovit/moovit_ad.gd" id="1_o7hac"]
 [ext_resource type="Texture2D" uid="uid://coaeof7mp2cnv" path="res://assets/img/test_imgs/fuck_you_baltimore.webp" id="2_jbmg0"]
-[ext_resource type="Texture2D" uid="uid://cxlr2eo2rodtn" path="res://assets/img/test_imgs/balloon_cat.jpg" id="3_bdseu"]
+[ext_resource type="Texture2D" uid="uid://cv1g8bwu1jd2f" path="res://assets/img/microgames/moovit/ad_moonactive.png" id="3_f02su"]
+[ext_resource type="Texture2D" uid="uid://cfijqrhtyt56a" path="res://assets/img/microgames/moovit/ad_temu.png" id="4_0yffr"]
 [ext_resource type="Texture2D" uid="uid://b030i1pdr5fra" path="res://assets/img/microgames/moovit/ad_moovit_plus.png" id="4_t0q05"]
 [ext_resource type="Texture2D" uid="uid://lccutwipcgje" path="res://assets/img/microgames/moovit/ad_outline.png" id="5_f02su"]
 [ext_resource type="Texture2D" uid="uid://0qrcmvuwk0sk" path="res://assets/img/microgames/moovit/green_exit_button.png" id="6_0yffr"]
@@ -10,7 +11,7 @@
 
 [node name="MoovitAd" type="Node2D" unique_id=1757015811]
 script = ExtResource("1_o7hac")
-advertising_images = Array[Texture2D]([ExtResource("2_jbmg0"), ExtResource("3_bdseu"), ExtResource("4_t0q05")])
+advertising_images = Array[Texture2D]([ExtResource("4_t0q05"), ExtResource("3_f02su"), ExtResource("4_0yffr")])
 
 [node name="AdImage" type="TextureRect" parent="." unique_id=962487903]
 offset_left = -68.0
