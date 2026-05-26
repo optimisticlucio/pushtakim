@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n406eecdye8r" path="res://scripts/microgames/moovit.gd" id="1_fpigg"]
 [ext_resource type="PackedScene" uid="uid://dvnmoqov5lsh7" path="res://scenes/microgames/moovit/moovit_ad.tscn" id="2_j30hq"]
-[ext_resource type="Texture2D" uid="uid://cuoyrswea4fe1" path="res://assets/img/microgames/moovit/test_hand.png" id="3_1hg08"]
+[ext_resource type="Texture2D" uid="uid://q1mntm6wkyj5" path="res://assets/img/microgames/moovit/moovit_hand.png" id="3_1hg08"]
 
 [node name="Moovit" type="Node2D" unique_id=382757718 node_paths=PackedStringArray("ad_spawn_area")]
 script = ExtResource("1_fpigg")
@@ -13,8 +13,9 @@ microgame_name = "Moovit Ads"
 hebrew_action_verb = "לסגור מודעות"
 length_in_seconds = 7.0
 
-[node name="TestHand" type="Sprite2D" parent="." unique_id=2058245986]
-position = Vector2(586, 372)
+[node name="MoovitHand" type="Sprite2D" parent="." unique_id=1911402184]
+position = Vector2(574, 370)
+scale = Vector2(1.0346321, 1.0346321)
 texture = ExtResource("3_1hg08")
 
 [node name="Control" type="Control" parent="." unique_id=1619452546]
@@ -23,4 +24,4 @@ anchors_preset = 0
 offset_left = 424.0
 offset_top = 38.0
 offset_right = 634.0
-offset_bottom = 476.0
+offset_bottom = 478.0
