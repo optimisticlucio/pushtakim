@@ -2,7 +2,7 @@ class_name TheKremboInQuestion extends Node2D
 
 ## The sprite layer of the krembo wrapping.
 @export
-var wrapping_layer: Sprite2D = null;
+var wrapping_layer: Tossable = null;
 
 ## The sprite layer of the krembo outer chocolate.
 @export
@@ -25,6 +25,11 @@ var bite_sfx_node: AudioStreamPlayer = null;
 @export
 var uneaten_pixel_leniency_percentage: float = 5;
 
+## How many seconds until the particles are despawned.
+## Leave it to be enough so the particles leave the screen.
+@export
+var seconds_to_despawn_particles: float = 1;
+
 ## The max amount of pixels that we allow the player to not finish eating.
 var uneaten_pixel_leniency: int = 0;
 
@@ -40,13 +45,15 @@ signal krembo_eaten;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	verify_assumptions();
+	
+	wrapping_layer.being_thrown = false;
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if mask_texture_for_current_layer == null:
 			if wrapping_layer != null:
 				# Unwrap the krembo
-				wrapping_layer.free();
+				wrapping_layer.being_thrown = true;
 				unwrap_sfx_node.play();
 				create_mask_layer(outer_chocolate_layer);
 			return;
@@ -58,6 +65,12 @@ func _input(event: InputEvent) -> void:
 			var pixel_y = int(local_pos.y + img_size.y / 2)
 			
 			add_black_circle_to_spritemask(pixel_x, pixel_y);
+			
+			var new_crumb = preload("res://scenes/microgames/krembo/tossable.tscn").instantiate();
+			add_child(new_crumb);
+			new_crumb.position = to_local(event.global_position);
+			new_crumb.scale = Vector2(0.25, 0.25)
+			
 			if white_pixels_to_fill_for_current_layer <= uneaten_pixel_leniency:
 				current_layer.free();
 				mask_image_for_current_layer = null;
@@ -154,3 +167,7 @@ func add_black_circle_to_spritemask(center_x: int, center_y: int) -> void:
 	current_layer.set_instance_shader_parameter("mask_texture", mask_texture_for_current_layer);
 	if white_pixels_to_fill_for_current_layer != white_pixels_before_bite:
 		bite_sfx_node.play();
+
+## Throws the wrapping in a nice arc.
+func summon_crumb():
+	pass
