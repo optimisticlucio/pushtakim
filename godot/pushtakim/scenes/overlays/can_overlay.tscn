@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dywrt177k7vci" path="res://scripts/overlays/can_overlay_masker.gd" id="2_5ywwx"]
 [ext_resource type="Texture2D" uid="uid://3m47akapkulj" path="res://assets/img/overlays/can_overlay/fuse.png" id="3_mosyd"]
 [ext_resource type="Texture2D" uid="uid://ch366ey8to6hy" path="res://assets/img/overlays/can_overlay/spark.png" id="5_mosyd"]
+[ext_resource type="Texture2D" uid="uid://k0fg8qehd48m" path="res://assets/img/yes_and_no.png" id="7_hrt3g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mosyd"]
 shader = ExtResource("1_5ywwx")
@@ -25,9 +26,11 @@ _data = {
 }
 point_count = 13
 
-[node name="CanOverlay" type="Node2D" unique_id=19033801 node_paths=PackedStringArray("spark_sprite")]
+[node name="CanOverlay" type="Node2D" unique_id=19033801 node_paths=PackedStringArray("spark_sprite", "success_sprite", "fail_sprite")]
 script = ExtResource("1_vn45d")
 spark_sprite = NodePath("Path2D/PathFollow2D/Spark")
+success_sprite = NodePath("Yes")
+fail_sprite = NodePath("No")
 
 [node name="Can" type="Sprite2D" parent="." unique_id=1495026174]
 material = SubResource("ShaderMaterial_mosyd")
@@ -59,3 +62,17 @@ position = Vector2(-25.124084, 7.6012573)
 rotation = -3.125685
 scale = Vector2(0.16414154, 0.16414154)
 texture = ExtResource("5_mosyd")
+
+[node name="Yes" type="Sprite2D" parent="." unique_id=1835002609]
+position = Vector2(79, 387)
+scale = Vector2(0.49927747, 0.49927744)
+texture = ExtResource("7_hrt3g")
+region_enabled = true
+region_rect = Rect2(0, 0, 173.5, 174)
+
+[node name="No" type="Sprite2D" parent="." unique_id=982068807]
+position = Vector2(76.91736, 384.97473)
+scale = Vector2(0.50724375, 0.5072437)
+texture = ExtResource("7_hrt3g")
+region_enabled = true
+region_rect = Rect2(259.5, 0, 164, 174)
