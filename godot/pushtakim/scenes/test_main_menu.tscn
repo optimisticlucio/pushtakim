@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b0s7mpt6d0lbx"]
 
 [ext_resource type="Script" uid="uid://crbmmj5vjh7wx" path="res://scripts/test_main_menu.gd" id="1_3q3va"]
+[ext_resource type="Texture2D" uid="uid://du8xlnulwfrh1" path="res://assets/img/simple_logo.png" id="2_nwq1y"]
 
 [sub_resource type="Theme" id="Theme_3q3va"]
 default_base_scale = 0.19
@@ -13,18 +14,23 @@ default_font_size = 18
 script = ExtResource("1_3q3va")
 
 [node name="ExplanationButton" type="Button" parent="." unique_id=1170128489]
-offset_left = 394.0
-offset_top = 285.0
-offset_right = 758.0
-offset_bottom = 388.0
+offset_left = 393.0
+offset_top = 315.0
+offset_right = 757.0
+offset_bottom = 418.0
 text = "מה החוקים?"
 
 [node name="StartButton" type="Button" parent="." unique_id=904610506]
-offset_left = 395.0
-offset_top = 426.0
-offset_right = 759.0
-offset_bottom = 529.0
+offset_left = 394.0
+offset_top = 456.0
+offset_right = 758.0
+offset_bottom = 559.0
 text = "התחל משחק!"
+
+[node name="SimpleLogo" type="Sprite2D" parent="." unique_id=1386118959]
+position = Vector2(571, 140.00002)
+scale = Vector2(1.4736842, 1.4736842)
+texture = ExtResource("2_nwq1y")
 
 [node name="Explanation" type="Node2D" parent="." unique_id=97629731]
 visible = false

@@ -131,9 +131,6 @@ func is_microgame_scene(packed_scene: PackedScene) -> bool:
 
 ## When called, instantiates a new microgame for the player.
 func start_new_microgame() -> void:
-	if available_microgames.is_empty():
-		push_error("[RUNTIME ERROR] Ran `start_new_microgame` when `available_microgames` was already exhausted. Make more microgames or shorten the game!");
-	
 	current_loaded_microgame = next_microgame;
 	# Next_microgame should never be pointing at the same game as the current one.
 	set_next_microgame();
