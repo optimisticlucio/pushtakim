@@ -11,11 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://cqnqw2horpj32" path="res://scenes/microgames/schnitzel.tscn" id="7_7lj2p"]
 [ext_resource type="PackedScene" uid="uid://bs13nsri2biim" path="res://scenes/inbetween_screens/test_inbetween_screen.tscn" id="7_8x1xg"]
 [ext_resource type="PackedScene" uid="uid://di4ui8d2p6iew" path="res://scenes/overlays/can_overlay.tscn" id="9_7lj2p"]
+[ext_resource type="PackedScene" uid="uid://cic0jnvmrcc31" path="res://scenes/game_over_screens/test_game_over.tscn" id="9_k1o6b"]
+[ext_resource type="AudioStream" uid="uid://btjer52up61tj" path="res://assets/audio/boo-womp.mp3" id="13_nnsh4"]
+[ext_resource type="Script" uid="uid://50mrgboykow6" path="res://scripts/player_fail_noise.gd" id="13_qkumw"]
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
 microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("4_ylu52"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p")])
 inbetween_screens_for_this_session = Array[PackedScene]([ExtResource("7_8x1xg")])
+game_over_screen = ExtResource("9_k1o6b")
 microgame_holding_node = NodePath("MicrogameHolder")
 overlay_node = NodePath("CanOverlay")
 break_time_between_minigames = 2.0
@@ -30,4 +34,9 @@ metadata/_custom_type_script = "uid://d1wvr5445tewe"
 stream = ExtResource("3_mtpdp")
 volume_db = -2.862
 script = ExtResource("4_4vpq8")
+parent_game_session = NodePath("..")
+
+[node name="PlayerFailNoise" type="AudioStreamPlayer" parent="." unique_id=695610384 node_paths=PackedStringArray("parent_game_session")]
+stream = ExtResource("13_nnsh4")
+script = ExtResource("13_qkumw")
 parent_game_session = NodePath("..")

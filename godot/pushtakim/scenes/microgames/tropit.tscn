@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://clc6u88es5ohd"]
 
 [ext_resource type="Script" uid="uid://b2wikff8maibj" path="res://scripts/microgames/tropit.gd" id="1_64t13"]
-[ext_resource type="Texture2D" uid="uid://de0avf01k4eq" path="res://assets/img/microgames/tropit/background.jpeg" id="2_4scip"]
-[ext_resource type="AudioStream" uid="uid://dedgnxi7oe8bf" path="res://assets/audio/microgames/tropit/muffled_happy_birthday_music.mp3" id="3_bsqc5"]
+[ext_resource type="Texture2D" uid="uid://quthvsei2ofu" path="res://assets/img/test_imgs/army_food_court.webp" id="2_s6amw"]
 [ext_resource type="Texture2D" uid="uid://di02twfwv2rgm" path="res://assets/img/microgames/tropit/tropit_spritesheet.png" id="4_m8vux"]
 [ext_resource type="AudioStream" uid="uid://dkij6q7dbvolf" path="res://assets/audio/microgames/tropit/ahh.mp3" id="5_m8vux"]
 [ext_resource type="AudioStream" uid="uid://ce3fvbi566nn2" path="res://assets/audio/microgames/tropit/sip.mp3" id="6_48bau"]
@@ -82,21 +81,15 @@ microgame_name = "Tropit"
 hebrew_action_verb = "לשתות"
 length_in_seconds = 8.0
 
-[node name="Background" type="Sprite2D" parent="." unique_id=2133373238]
-position = Vector2(575.0442, 333.5265)
-rotation = 0.034906585
-scale = Vector2(0.5994963, 0.5994963)
-texture = ExtResource("2_4scip")
+[node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=1097093454]
+position = Vector2(580.6099, 318.75)
+scale = Vector2(1.595672, 1.595672)
+texture = ExtResource("2_s6amw")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1104999430]
 offset_right = 1169.0
 offset_bottom = 663.0
 color = Color(0, 0, 0, 0.30588236)
-
-[node name="BackingMusic" type="AudioStreamPlayer" parent="." unique_id=149403377]
-stream = ExtResource("3_bsqc5")
-volume_db = -14.597
-autoplay = true
 
 [node name="TropitSprite" type="Sprite2D" parent="." unique_id=1883086494]
 position = Vector2(517, 266)

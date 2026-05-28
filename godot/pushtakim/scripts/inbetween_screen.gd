@@ -3,3 +3,6 @@
 ## This function places whatever string is passed to it in the "Action Verb" location of the inbetween screen.
 ## Should be run on _ready().
 @abstract func set_action_verb(passed_verb: String) -> void;
+
+## This function sets the amount of lives the player currently has.
+@abstract func set_remaining_lives(remaining_lives: int) -> void;

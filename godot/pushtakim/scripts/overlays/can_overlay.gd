@@ -6,9 +6,8 @@ extends MicrogameOverlay
 
 var flame_burning: bool = true;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+@export var success_sprite: Sprite2D = null;
+@export var fail_sprite: Sprite2D = null;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,14 +21,18 @@ func _process(delta: float) -> void:
 
 func on_player_win() -> void:
 	extinguish_flame()
+	success_sprite.visible = true;
 
 func on_player_loss() -> void:
 	extinguish_flame()
+	fail_sprite.visible = true;
 	
 func reset() -> void:
 	can_masker.set_progress(0);
 	$Path2D/PathFollow2D/Spark.visible = true;
 	flame_burning = true;
+	success_sprite.visible = false;
+	fail_sprite.visible = false;
 
 func extinguish_flame() -> void:
 	$Path2D/PathFollow2D/Spark.visible = false;

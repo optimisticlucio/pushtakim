@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6nxkavg0im2y"]
+
+[ext_resource type="Script" uid="uid://cckkq2q7uykp2" path="res://scripts/microgames/krembo/tossable.gd" id="1_3k4ni"]
+[ext_resource type="Texture2D" uid="uid://0lfrie140xe6" path="res://assets/img/microgames/krembo/Crumbs.png" id="2_w8bbh"]
+
+[node name="Tossable" type="Sprite2D" unique_id=1092502694]
+texture = ExtResource("2_w8bbh")
+region_enabled = true
+region_rect = Rect2(388.49997, 46.25, 105, 85.5)
+script = ExtResource("1_3k4ni")
+throw_strength = Vector2(300, 400)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=76698181]
+rect = Rect2(-50, -40, 102, 81)

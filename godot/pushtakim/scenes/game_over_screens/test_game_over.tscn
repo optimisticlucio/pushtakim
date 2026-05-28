@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cic0jnvmrcc31"]
+
+[ext_resource type="Script" uid="uid://dc3u64e0mj7f0" path="res://scripts/test_game_over.gd" id="1_s6b3r"]
+[ext_resource type="Texture2D" uid="uid://d87na6kowc3g" path="res://assets/img/playtest_qr.png" id="2_obmb5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0hf3"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_wr3va"]
+font_size = 23
+
+[node name="TestGameOver" type="Node2D" unique_id=1894532367]
+script = ExtResource("1_s6b3r")
+
+[node name="Label" type="Label" parent="." unique_id=1692305714]
+offset_left = 346.0
+offset_top = 118.0
+offset_right = 833.0
+offset_bottom = 297.0
+text = "נגמרו לך החיים!
+נגמר המשחק!"
+label_settings = SubResource("LabelSettings_q0hf3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1904669623]
+offset_left = 284.0
+offset_top = 422.0
+offset_right = 501.0
+offset_bottom = 475.0
+text = "לשחק שוב?"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2136041709]
+offset_left = 672.0
+offset_top = 356.0
+offset_right = 921.0
+offset_bottom = 582.0
+color = Color(0.5019608, 0.5019608, 0, 1)
+
+[node name="Label2" type="Label" parent="." unique_id=2143719836]
+offset_left = 705.0
+offset_top = 355.0
+offset_right = 880.0
+offset_bottom = 403.0
+text = "תספרו לי איך היה!"
+label_settings = SubResource("LabelSettings_wr3va")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlaytestQr" type="Sprite2D" parent="." unique_id=1812139538]
+position = Vector2(796, 484)
+scale = Vector2(0.74336284, 0.74336284)
+texture = ExtResource("2_obmb5")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

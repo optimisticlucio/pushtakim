@@ -9,6 +9,10 @@ var microgames_for_this_session: Array[PackedScene] = [];
 @export
 var inbetween_screens_for_this_session: Array[PackedScene] = [];
 
+## The screen to show when the player loses
+@export
+var game_over_screen: PackedScene = null;
+
 ## The amount of lives a player starts with. Should not be modified during runtime.
 @export
 var starting_lives: int = 3;
@@ -79,7 +83,9 @@ func end_microgame_early() -> void:
 
 ## Function that's run every time a microgame ends. Cleans up the current microgame, shows info to player, and then loads up a new one.
 func replace_current_microgame():
-	handle_finished_microgame();
+	# Returns false if game over.
+	if !handle_finished_microgame():
+		return;
 	
 	await show_inbetween_screen();
 	
@@ -100,18 +106,6 @@ func setup_variables() -> void:
 	# Assumptions valid, let's rock
 	remaining_lives = starting_lives;
 	
-	# Load all the packed scenes. If any of them are not a microgame, throw an error.
-	var loaded_microgames = [];
-	for packed_scene in microgames_for_this_session:
-		if not is_microgame_scene(packed_scene):
-			push_error("[CONFIG ERROR] In the loaded game session setup, a scene in `microgames_for_this_session` is not a microgame! Specifically, the scene %s." % packed_scene.resource_name);
-		loaded_microgames.push_back(packed_scene);
-	
-	# The microgames will be a double deck shuffle so there's a chance of repeats but likely will be unique.
-	available_microgames.append_array(loaded_microgames);
-	available_microgames.append_array(loaded_microgames);
-	available_microgames.shuffle();
-	
 	# The overlay should be hidden outside of microgames.
 	overlay_node.set_process(false);
 	overlay_node.visible = false;
@@ -119,7 +113,7 @@ func setup_variables() -> void:
 	player_lost_microgame.connect(overlay_node.on_player_loss);
 	
 	# And load our first microgame.
-	next_microgame = available_microgames.pop_front().instantiate();
+	set_next_microgame();
 
 ## Returns true if the given PackedScene's root node is a Microgame node.
 func is_microgame_scene(packed_scene: PackedScene) -> bool:
@@ -137,12 +131,9 @@ func is_microgame_scene(packed_scene: PackedScene) -> bool:
 
 ## When called, instantiates a new microgame for the player.
 func start_new_microgame() -> void:
-	if available_microgames.is_empty():
-		push_error("[RUNTIME ERROR] Ran `start_new_microgame` when `available_microgames` was already exhausted. Make more microgames or shorten the game!");
-	
 	current_loaded_microgame = next_microgame;
 	# Next_microgame should never be pointing at the same game as the current one.
-	next_microgame = available_microgames.pop_front().instantiate();
+	set_next_microgame();
 	
 	# Connect the relevant signals.
 	current_loaded_microgame.player_wins_at_microgame.connect(player_won_microgame.emit);
@@ -159,7 +150,8 @@ func start_new_microgame() -> void:
 	seconds_on_current_microgame = 0;
 
 ## Called when a microgame finishes. Handles the cleanup of the current microgame and loading the next one, if appropriate.
-func handle_finished_microgame() -> void:
+## Returns false if the game should be ended.
+func handle_finished_microgame() -> bool:
 	var player_won_at_microgame = current_loaded_microgame.player_has_won_at_microgame();
 	
 	current_loaded_microgame.free();
@@ -174,16 +166,42 @@ func handle_finished_microgame() -> void:
 		# TODO: Show player a "boo! you failed" screen
 		remaining_lives -= 1;
 		
-		# TODO: If player's lives are at zero, show loss screen.
+		if remaining_lives <= 0:
+			get_tree().change_scene_to_packed(game_over_screen);
+			return false;
+	
+	return true;
 
 ## When called, shows a random inbetween screen to the player for `break_time_between_minigames` seconds.
 func show_inbetween_screen() -> void:
 	var inbetween_screen_scene: InbetweenScreen = inbetween_screens_for_this_session.pick_random().instantiate();
 	
 	inbetween_screen_scene.set_action_verb(next_microgame.hebrew_action_verb);
+	inbetween_screen_scene.set_remaining_lives(remaining_lives);
 	
 	self.add_child(inbetween_screen_scene);
 	
 	await get_tree().create_timer(break_time_between_minigames).timeout;
 	
 	inbetween_screen_scene.queue_free();
+
+## When ran, adds a stack of microgames to `available_microgames` to be pulled later.
+func generate_microgame_stack() -> void:
+	# Load all the packed scenes. If any of them are not a microgame, throw an error.
+	var loaded_microgames = [];
+	for packed_scene in microgames_for_this_session:
+		if not is_microgame_scene(packed_scene):
+			push_error("[CONFIG ERROR] In the loaded game session setup, a scene in `microgames_for_this_session` is not a microgame! Specifically, the scene %s." % packed_scene.resource_name);
+		loaded_microgames.push_back(packed_scene);
+	
+	# The microgames will be a double deck shuffle so there's a chance of repeats but likely will be unique.
+	available_microgames.append_array(loaded_microgames);
+	available_microgames.append_array(loaded_microgames);
+	available_microgames.shuffle();
+
+## When run, puts a random microgame in `next_microgame` from the `available_microgames` stack.
+func set_next_microgame() -> void:
+	if len(available_microgames) < 1:
+		generate_microgame_stack();
+	
+	next_microgame = available_microgames.pop_front().instantiate();

@@ -10,6 +10,9 @@ font_color = Color(0, 0, 0, 1)
 font_size = 100
 font_color = Color(0.5019608, 0.5019608, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_yos81"]
+font_size = 26
+
 [node name="TestInbetweenScreen" type="Node2D" unique_id=870047627]
 script = ExtResource("1_to0qq")
 
@@ -37,3 +40,20 @@ offset_bottom = 456.0
 text = "לבצע!"
 label_settings = SubResource("LabelSettings_to0qq")
 horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=958587933]
+offset_left = 374.0
+offset_top = 504.0
+offset_right = 755.0
+offset_bottom = 593.0
+color = Color(0, 0.45882353, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1149416030]
+offset_left = 459.0
+offset_top = 520.0
+offset_right = 700.0
+offset_bottom = 578.0
+text = "יש לך עוד X חיים"
+label_settings = SubResource("LabelSettings_yos81")
+horizontal_alignment = 1
+vertical_alignment = 1

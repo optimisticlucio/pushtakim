@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b0s7mpt6d0lbx"]
+
+[ext_resource type="Script" uid="uid://crbmmj5vjh7wx" path="res://scripts/test_main_menu.gd" id="1_3q3va"]
+[ext_resource type="Texture2D" uid="uid://du8xlnulwfrh1" path="res://assets/img/simple_logo.png" id="2_nwq1y"]
+
+[sub_resource type="Theme" id="Theme_3q3va"]
+default_base_scale = 0.19
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_nwq1y"]
+default_font_size = 18
+
+[node name="TestMainMenu" type="Node2D" unique_id=1704513637]
+script = ExtResource("1_3q3va")
+
+[node name="ExplanationButton" type="Button" parent="." unique_id=1170128489]
+offset_left = 393.0
+offset_top = 315.0
+offset_right = 757.0
+offset_bottom = 418.0
+text = "מה החוקים?"
+
+[node name="StartButton" type="Button" parent="." unique_id=904610506]
+offset_left = 394.0
+offset_top = 456.0
+offset_right = 758.0
+offset_bottom = 559.0
+text = "התחל משחק!"
+
+[node name="SimpleLogo" type="Sprite2D" parent="." unique_id=1386118959]
+position = Vector2(571, 140.00002)
+scale = Vector2(1.4736842, 1.4736842)
+texture = ExtResource("2_nwq1y")
+
+[node name="Explanation" type="Node2D" parent="." unique_id=97629731]
+visible = false
+position = Vector2(394, 285)
+
+[node name="ColorRect" type="ColorRect" parent="Explanation" unique_id=1031100640]
+offset_left = -233.0
+offset_top = -194.0
+offset_right = 557.0
+offset_bottom = 246.0
+color = Color(0, 0.10980392, 0, 1)
+
+[node name="Label" type="RichTextLabel" parent="Explanation" unique_id=896933325]
+offset_left = -151.0
+offset_top = -148.0
+offset_right = 476.0
+offset_bottom = 198.0
+theme = SubResource("Theme_3q3va")
+bbcode_enabled = true
+text = "[b]הקשב![/b]
+
+החוקים של המשחק הזה פשוטים מאוד.
+[b]ראשית,[/b] יש להשתמש בעכבר, ואך ורק בעכבר.
+[b]שנית,[/b] אתם הולכים לשחק במשחקונים. לכל משחקון יש חוקים שונים. יש לכם כמה שניות להבין מה קורה, ולהצליח.
+
+\"אבל המפקד, מה אם אנחנו לא מצליחים להבין מה המטרה?\"
+באסה. תתמודדו. על השאלה המטומטמת הזאת, כולם יורדים למצב שתיים."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitExplanation" type="Button" parent="Explanation" unique_id=2136736572]
+offset_left = -219.0
+offset_top = 179.0
+offset_right = -23.0
+offset_bottom = 234.0
+theme = SubResource("Theme_nwq1y")
+theme_override_colors/font_color = Color(0.7768763, 0.3564352, 0.34168687, 1)
+text = "סיימנו עם הקיטבק"
+
+[connection signal="pressed" from="ExplanationButton" to="." method="explanation_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="start_button_pressed"]
+[connection signal="pressed" from="Explanation/ExitExplanation" to="." method="exit_explanation_pressed"]
