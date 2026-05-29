@@ -13,7 +13,7 @@ amount_of_created_ads = 5
 moovit_ad = ExtResource("2_j30hq")
 microgame_name = "Moovit Ads"
 hebrew_action_verb = "לסגור מודעות"
-length_in_seconds = 7.0
+length_in_seconds = 5.5
 
 [node name="BusStop" type="Sprite2D" parent="." unique_id=2059205762]
 position = Vector2(571.32, 305.75)

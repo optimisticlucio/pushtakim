@@ -11,6 +11,7 @@ font_size = 23
 
 [node name="TestGameOver" type="Node2D" unique_id=1894532367]
 script = ExtResource("1_s6b3r")
+seconds_before_going_to_main_menu = 65.0
 
 [node name="Label" type="Label" parent="." unique_id=1692305714]
 offset_left = 346.0

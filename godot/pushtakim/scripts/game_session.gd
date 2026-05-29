@@ -34,6 +34,20 @@ var break_time_between_minigames: float = 1;
 @export
 var post_minigame_wait_period_in_seconds: float = 1;
 
+## How many minigames must be completed for the timer to shorten
+@export
+var amount_of_minigames_to_speedup: int = 4;
+
+## The percentage by which the minigame speeds up on every speedup. NUMBER BETWEEN 0 TO 1!!
+@export
+var speedup_percentage_factor: float = 0.10;
+
+## At the start of every minigame, the time is multiplied by this value.
+var current_minigame_speed_modifier: float = 1;
+
+## How many minigames have been played up until this point, plus one.
+var current_minigame_index: int = 0;
+
 ## The microgames which haven't been played in this particular game session. 
 ## Changes during runtime. If you want the originally set ones, reference `microgames_for_this_session`.
 var available_microgames: Array[PackedScene] = []; 
@@ -131,6 +145,13 @@ func is_microgame_scene(packed_scene: PackedScene) -> bool:
 
 ## When called, instantiates a new microgame for the player.
 func start_new_microgame() -> void:
+	current_minigame_index += 1;
+	
+	if (current_minigame_index % amount_of_minigames_to_speedup == 0):
+		current_minigame_speed_modifier *= (1 - speedup_percentage_factor)
+	
+	print("MINIGAME NUM: %s, SPEED MODIFIER: %s" % [current_minigame_index, current_minigame_speed_modifier])
+	
 	current_loaded_microgame = next_microgame;
 	# Next_microgame should never be pointing at the same game as the current one.
 	set_next_microgame();
@@ -138,6 +159,8 @@ func start_new_microgame() -> void:
 	# Connect the relevant signals.
 	current_loaded_microgame.player_wins_at_microgame.connect(player_won_microgame.emit);
 	current_loaded_microgame.player_loses_at_microgame.connect(player_lost_microgame.emit);
+	
+	current_loaded_microgame.length_in_seconds *= current_minigame_speed_modifier;
 	
 	microgame_holding_node.add_child(current_loaded_microgame);
 	

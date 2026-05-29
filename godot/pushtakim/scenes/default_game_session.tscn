@@ -24,6 +24,8 @@ microgame_holding_node = NodePath("MicrogameHolder")
 overlay_node = NodePath("CanOverlay")
 break_time_between_minigames = 2.0
 post_minigame_wait_period_in_seconds = 1.5
+amount_of_minigames_to_speedup = 3
+speedup_percentage_factor = 0.075
 metadata/_custom_type_script = "uid://d1wvr5445tewe"
 
 [node name="MicrogameHolder" type="Node2D" parent="." unique_id=2025458168]

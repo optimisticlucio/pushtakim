@@ -8,7 +8,7 @@
 script = ExtResource("1_k1hyc")
 the_krembo = NodePath("TheKremboInQuestion")
 hebrew_action_verb = "לאכול"
-length_in_seconds = 8.0
+length_in_seconds = 7.5
 
 [node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=1408169575]
 position = Vector2(580.6099, 318.75)
@@ -18,4 +18,4 @@ texture = ExtResource("2_6jsoh")
 [node name="TheKremboInQuestion" parent="." unique_id=1234685278 instance=ExtResource("2_yyjob")]
 position = Vector2(580, 270)
 scale = Vector2(2.757351, 2.7573476)
-bite_radius = 150
+bite_radius = 125
