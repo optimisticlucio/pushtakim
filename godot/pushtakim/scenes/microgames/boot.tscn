@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bavtrj0cjceof"]
+
+[ext_resource type="Script" uid="uid://by82yftwehhvl" path="res://scripts/microgames/boot.gd" id="1_yybry"]
+[ext_resource type="Texture2D" uid="uid://ctboyo5q43ch1" path="res://assets/img/microgames/boot/clean_boot.png" id="2_0ygkm"]
+[ext_resource type="Texture2D" uid="uid://wsw13o8rarn7" path="res://assets/img/microgames/boot/dirty_boot.png" id="3_lbjgl"]
+[ext_resource type="Texture2D" uid="uid://dpslsvofb2wl5" path="res://assets/img/microgames/boot/brush.png" id="4_lbjgl"]
+[ext_resource type="AudioStream" uid="uid://xma0gs0ouu36" path="res://assets/audio/microgames/brush/brush.wav" id="5_ob3xv"]
+
+[node name="Boot" type="Node2D" unique_id=657677430 node_paths=PackedStringArray("clean_boot", "dirty_boot", "brush")]
+script = ExtResource("1_yybry")
+clean_boot = NodePath("CleanBoot")
+dirty_boot = NodePath("DirtyBoot")
+brush = NodePath("Brush")
+total_movement_to_win = 6500.0
+hebrew_action_verb = "לגלחץ"
+length_in_seconds = 6.0
+
+[node name="DirtyBoot" type="Sprite2D" parent="." unique_id=2101140671]
+position = Vector2(544, 360)
+texture = ExtResource("3_lbjgl")
+
+[node name="CleanBoot" type="Sprite2D" parent="." unique_id=439192880]
+position = Vector2(544, 360)
+texture = ExtResource("2_0ygkm")
+
+[node name="Brush" type="Sprite2D" parent="." unique_id=659177072]
+position = Vector2(164.5, 287.58878)
+scale = Vector2(0.634058, 0.634058)
+texture = ExtResource("4_lbjgl")
+
+[node name="Brush2" type="AudioStreamPlayer" parent="." unique_id=743565959]
+stream = ExtResource("5_ob3xv")
+
+[node name="BrushableArea" type="Area2D" parent="." unique_id=103525255]
+position = Vector2(68, 125)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BrushableArea" unique_id=1216052621]
+position = Vector2(-56, -70)
+polygon = PackedVector2Array(573, 111, 714, 112, 726, 317, 702, 480, 574, 512, 359, 517, 346, 323, 536, 284)
