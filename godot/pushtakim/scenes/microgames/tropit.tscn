@@ -79,7 +79,7 @@ satisfied_noise_node = NodePath("SatisfiedNoise")
 animation_handler = NodePath("AnimationPlayer")
 microgame_name = "Tropit"
 hebrew_action_verb = "לשתות"
-length_in_seconds = 8.0
+length_in_seconds = 6.5
 
 [node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=1097093454]
 position = Vector2(580.6099, 318.75)
