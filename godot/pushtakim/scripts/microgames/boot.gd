@@ -12,8 +12,8 @@ var brush: Sprite2D = null;
 @export
 var total_movement_to_win: float = 5_000;
 
-@export
-var brushing_sfx: AudioStreamPlayer = null;
+@onready
+var brushing_sfx: AudioStreamPlayer = $Brush2;
 
 var brush_movement_so_far: float = 0;
 
@@ -22,7 +22,6 @@ var previous_brush_location: Vector2 = Vector2(0,0);
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	previous_brush_location = brush.position;
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -38,6 +37,13 @@ func _process(delta: float) -> void:
 	# Update opacities
 	var progress = get_progress_in_microgame()
 	clean_boot.self_modulate.a = progress
+	
+	# If the user moved the brush enough do the funky noise. If not shut up.
+	var minimal_movement = total_movement_this_delta > 0.3;
+	if brushing_sfx.playing and !minimal_movement:
+		brushing_sfx.stop()
+	if !brushing_sfx.playing and minimal_movement:
+		brushing_sfx.play();
 	
 	# Check if user wins 
 	if brush_movement_so_far > total_movement_to_win:

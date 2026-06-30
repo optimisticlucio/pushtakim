@@ -7,7 +7,7 @@
 size = Vector2(102, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rium"]
-size = Vector2(220, 64)
+size = Vector2(324, 115)
 
 [node name="Fork" type="Area2D" unique_id=494767471 node_paths=PackedStringArray("food_area")]
 script = ExtResource("1_rmha5")
@@ -27,5 +27,5 @@ region_enabled = true
 region_rect = Rect2(24, 426.5, 340, 135)
 
 [node name="HandleArea" type="CollisionShape2D" parent="." unique_id=841284492]
-position = Vector2(-5, 3)
+position = Vector2(-57, 4.5)
 shape = SubResource("RectangleShape2D_1rium")
