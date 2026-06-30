@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c8x3knaargdf1"]
+
+[ext_resource type="Script" uid="uid://7gqtvgg4whuk" path="res://scripts/microgames/bullet/actual_bullet.gd" id="1_jhsev"]
+[ext_resource type="Texture2D" uid="uid://nafebkmxnn77" path="res://assets/img/microgames/bullets/spritesheet.png" id="2_6wd3d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bnf4f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfy7w"]
+radius = 45.0
+height = 332.0
+
+[node name="ActualBullet" type="RigidBody2D" unique_id=587880201]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_bnf4f")
+gravity_scale = 1.5
+script = ExtResource("1_jhsev")
+
+[node name="Spritesheet" type="Sprite2D" parent="." unique_id=516644030]
+position = Vector2(8.821339, -4.3182087)
+rotation = 0.05235988
+scale = Vector2(0.46406865, 0.44089994)
+texture = ExtResource("2_6wd3d")
+region_enabled = true
+region_rect = Rect2(0, 64.5, 182.7555, 525.76886)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1301675316]
+scale = Vector2(0.67453116, 0.67453116)
+shape = SubResource("CapsuleShape2D_gfy7w")

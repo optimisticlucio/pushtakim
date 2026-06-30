@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://defltltp1esgx"]
+
+[ext_resource type="Texture2D" uid="uid://nafebkmxnn77" path="res://assets/img/microgames/bullets/spritesheet.png" id="1_8d4j7"]
+[ext_resource type="Script" uid="uid://t0q5g3ya563e" path="res://scripts/microgames/bullet/magazine.gd" id="1_hxv1n"]
+[ext_resource type="AudioStream" uid="uid://ccbd541woi3v6" path="res://assets/audio/microgames/bullet/guncock.mp3" id="2_7hlnc"]
+
+[node name="Magazine" type="Node2D" unique_id=661557495 node_paths=PackedStringArray("left_sprite", "right_sprite")]
+script = ExtResource("1_hxv1n")
+left_sprite = NodePath("LeftSprite")
+right_sprite = NodePath("RightSprite")
+
+[node name="Guncock" type="AudioStreamPlayer" parent="." unique_id=1486433994]
+stream = ExtResource("2_7hlnc")
+
+[node name="RightSprite" type="Sprite2D" parent="." unique_id=310399]
+position = Vector2(-3, -3)
+texture = ExtResource("1_8d4j7")
+region_enabled = true
+region_rect = Rect2(657.28784, -3.2210083, 413.90103, 612)
+
+[node name="LeftSprite" type="Sprite2D" parent="." unique_id=2095852683]
+position = Vector2(2, -1)
+texture = ExtResource("1_8d4j7")
+region_enabled = true
+region_rect = Rect2(187.01889, 0, 413.90103, 612)
+
+[node name="BulletInsertArea" type="Area2D" parent="." unique_id=1092125503]
+input_pickable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BulletInsertArea" unique_id=484826448]
+position = Vector2(-153, -117)
+polygon = PackedVector2Array(2, -50, 37, -3, 227, -80, 267, -150, 223, -151, 215, -112, 49, -37)

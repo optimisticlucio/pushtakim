@@ -18,6 +18,7 @@ closed_mouth_sprite = NodePath("Closed Mouth")
 victory_sfx = NodePath("Meow")
 microgame_name = "Schnitzel Eating"
 hebrew_action_verb = "לאכול"
+length_in_seconds = 4.5
 
 [node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=447291466]
 position = Vector2(580.60986, 318.75)

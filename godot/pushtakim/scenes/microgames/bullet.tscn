@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://gu6cy74a3he"]
+
+[ext_resource type="Script" uid="uid://bia1fcwl14cfo" path="res://scripts/microgames/bullet.gd" id="1_bnf4f"]
+[ext_resource type="PackedScene" uid="uid://c8x3knaargdf1" path="res://scenes/microgames/bullet/actual_bullet.tscn" id="2_mjekq"]
+[ext_resource type="PackedScene" uid="uid://defltltp1esgx" path="res://scenes/microgames/bullet/magazine.tscn" id="3_7ry0v"]
+
+[node name="Bullet" type="Node2D" unique_id=1137596318 node_paths=PackedStringArray("bullets_to_fill_in")]
+script = ExtResource("1_bnf4f")
+bullets_to_fill_in = [NodePath("ActualBullet2"), NodePath("ActualBullet4"), NodePath("ActualBullet3"), NodePath("ActualBullet")]
+microgame_name = "Magazine Filler"
+hebrew_action_verb = "למלא מחסנית"
+length_in_seconds = 9.0
+
+[node name="Magazine" parent="." unique_id=661557495 instance=ExtResource("3_7ry0v")]
+position = Vector2(934, 326)
+scale = Vector2(0.7666667, 0.7666667)
+
+[node name="ActualBullet2" parent="." unique_id=587880201 instance=ExtResource("2_mjekq")]
+position = Vector2(81, 419)
+
+[node name="ActualBullet4" parent="." unique_id=1852498199 instance=ExtResource("2_mjekq")]
+position = Vector2(437, 421)
+
+[node name="ActualBullet3" parent="." unique_id=880890420 instance=ExtResource("2_mjekq")]
+position = Vector2(318, 420)
+
+[node name="ActualBullet" parent="." unique_id=832666874 instance=ExtResource("2_mjekq")]
+position = Vector2(200, 419)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1354459218]
+scale = Vector2(14.4, 71)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=410622803]
+position = Vector2(33.958336, 7.5352116)
+polygon = PackedVector2Array(-30, 0, 11.875, 0, 14.930557, 0.042253494, 42.916664, -0.4929576, 43.055557, 0.6338029, 14, 0.775, -33.819447, 0.7183099, -33.958336, -4.3239436, -32.083336, -0.07042265)
