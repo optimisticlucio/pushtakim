@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dvnmoqov5lsh7" path="res://scenes/microgames/moovit/moovit_ad.tscn" id="2_j30hq"]
 [ext_resource type="Texture2D" uid="uid://q1mntm6wkyj5" path="res://assets/img/microgames/moovit/moovit_hand.png" id="3_1hg08"]
 [ext_resource type="Texture2D" uid="uid://bwidegawtsyi8" path="res://assets/img/test_imgs/bus_stop.png" id="3_qxxe4"]
-[ext_resource type="AudioStream" uid="uid://no3vueafj1ov" path="res://assets/audio/microgames/moovit/traffic.mp3" id="4_sy8mm"]
+[ext_resource type="Texture2D" uid="uid://jrnnx88wxgr0" path="res://assets/img/microgames/moovit/background.png" id="4_u3me8"]
+[ext_resource type="AudioStream" uid="uid://csu4ww0m0t74f" path="res://assets/audio/microgames/bullet/desert_background_noise.mp3" id="6_u3me8"]
 
 [node name="Moovit" type="Node2D" unique_id=382757718 node_paths=PackedStringArray("ad_spawn_area")]
 script = ExtResource("1_fpigg")
@@ -20,6 +21,11 @@ position = Vector2(571.32, 305.75)
 scale = Vector2(1.5430001, 1.5429999)
 texture = ExtResource("3_qxxe4")
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1672279006]
+position = Vector2(576, 315.99997)
+scale = Vector2(0.6576323, 0.55579704)
+texture = ExtResource("4_u3me8")
+
 [node name="MoovitHand" type="Sprite2D" parent="." unique_id=1911402184]
 position = Vector2(574, 370)
 scale = Vector2(1.0346321, 1.0346321)
@@ -34,6 +40,6 @@ offset_right = 634.0
 offset_bottom = 478.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1295159590]
-stream = ExtResource("4_sy8mm")
-volume_db = -8.212
+stream = ExtResource("6_u3me8")
+volume_db = -1.826
 autoplay = true

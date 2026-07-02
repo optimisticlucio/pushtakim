@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bia1fcwl14cfo" path="res://scripts/microgames/bullet.gd" id="1_bnf4f"]
 [ext_resource type="PackedScene" uid="uid://c8x3knaargdf1" path="res://scenes/microgames/bullet/actual_bullet.tscn" id="2_mjekq"]
+[ext_resource type="Texture2D" uid="uid://b0hlsbn85vti" path="res://assets/img/microgames/bullets/background.png" id="2_xi4bm"]
 [ext_resource type="PackedScene" uid="uid://defltltp1esgx" path="res://scenes/microgames/bullet/magazine.tscn" id="3_7ry0v"]
+[ext_resource type="Texture2D" uid="uid://bcvpul40agnan" path="res://assets/img/microgames/bullets/front_wood.png" id="5_1h60p"]
+[ext_resource type="AudioStream" uid="uid://csu4ww0m0t74f" path="res://assets/audio/microgames/bullet/desert_background_noise.mp3" id="6_1h60p"]
 
 [node name="Bullet" type="Node2D" unique_id=1137596318 node_paths=PackedStringArray("bullets_to_fill_in")]
 script = ExtResource("1_bnf4f")
@@ -11,25 +14,42 @@ microgame_name = "Magazine Filler"
 hebrew_action_verb = "למלא מחסנית"
 length_in_seconds = 9.0
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1004983654]
+position = Vector2(571.00006, 323.00003)
+scale = Vector2(0.65164214, 0.52577025)
+texture = ExtResource("2_xi4bm")
+
 [node name="Magazine" parent="." unique_id=661557495 instance=ExtResource("3_7ry0v")]
-position = Vector2(934, 326)
-scale = Vector2(0.7666667, 0.7666667)
+position = Vector2(980.99994, 248)
+rotation = 0.034606498
+scale = Vector2(0.6626883, 0.6332986)
 
 [node name="ActualBullet2" parent="." unique_id=587880201 instance=ExtResource("2_mjekq")]
-position = Vector2(81, 419)
+position = Vector2(83, 339)
 
 [node name="ActualBullet4" parent="." unique_id=1852498199 instance=ExtResource("2_mjekq")]
-position = Vector2(437, 421)
+position = Vector2(439, 341)
 
 [node name="ActualBullet3" parent="." unique_id=880890420 instance=ExtResource("2_mjekq")]
-position = Vector2(318, 420)
+position = Vector2(320, 340)
 
 [node name="ActualBullet" parent="." unique_id=832666874 instance=ExtResource("2_mjekq")]
-position = Vector2(200, 419)
+position = Vector2(202, 339)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1354459218]
+position = Vector2(2, -80)
 scale = Vector2(14.4, 71)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=410622803]
 position = Vector2(33.958336, 7.5352116)
 polygon = PackedVector2Array(-30, 0, 11.875, 0, 14.930557, 0.042253494, 42.916664, -0.4929576, 43.055557, 0.6338029, 14, 0.775, -33.819447, 0.7183099, -33.958336, -4.3239436, -32.083336, -0.07042265)
+
+[node name="FrontWood" type="Sprite2D" parent="." unique_id=702575725]
+position = Vector2(560, 622)
+scale = Vector2(0.68501425, 0.8633404)
+texture = ExtResource("5_1h60p")
+
+[node name="DesertBackgroundNoise" type="AudioStreamPlayer" parent="." unique_id=780041981]
+stream = ExtResource("6_1h60p")
+volume_db = -5.474
+autoplay = true

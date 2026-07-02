@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://ccdbv7pnmbtqg" path="res://assets/audio/nice.mp3" id="3_mtpdp"]
 [ext_resource type="Script" uid="uid://l8eovshfqd7b" path="res://scripts/play_sound_on_player_victory.gd" id="4_4vpq8"]
 [ext_resource type="PackedScene" uid="uid://clc6u88es5ohd" path="res://scenes/microgames/tropit.tscn" id="4_s0jge"]
-[ext_resource type="PackedScene" uid="uid://bg01665km0270" path="res://scenes/microgames/mamad.tscn" id="4_ylu52"]
 [ext_resource type="PackedScene" uid="uid://rn053348bflm" path="res://scenes/microgames/krembo.tscn" id="5_ylu52"]
 [ext_resource type="PackedScene" uid="uid://d3dxmxm4tfmu2" path="res://scenes/microgames/moovit.tscn" id="6_7xyan"]
 [ext_resource type="PackedScene" uid="uid://cqnqw2horpj32" path="res://scenes/microgames/schnitzel.tscn" id="7_7lj2p"]
@@ -19,7 +18,7 @@
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
-microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("4_ylu52"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p"), ExtResource("8_m7nmb"), ExtResource("9_5hasl")])
+microgames_for_this_session = Array[PackedScene]([ExtResource("4_s0jge"), ExtResource("3_kc1oo"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p"), ExtResource("8_m7nmb"), ExtResource("9_5hasl")])
 inbetween_screens_for_this_session = Array[PackedScene]([ExtResource("7_8x1xg")])
 game_over_screen = ExtResource("9_k1o6b")
 microgame_holding_node = NodePath("MicrogameHolder")

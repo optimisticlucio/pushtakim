@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://crbmmj5vjh7wx" path="res://scripts/test_main_menu.gd" id="1_3q3va"]
 [ext_resource type="Texture2D" uid="uid://du8xlnulwfrh1" path="res://assets/img/simple_logo.png" id="2_nwq1y"]
+[ext_resource type="Texture2D" uid="uid://c6k7seqcbcaia" path="res://assets/img/instructional_pamphlet.png" id="3_w7psy"]
+[ext_resource type="FontFile" uid="uid://dlnsvf3juc4n6" path="res://assets/fonts/SuezOne-Regular.ttf" id="4_5koev"]
 
-[sub_resource type="Theme" id="Theme_3q3va"]
-default_base_scale = 0.19
-default_font_size = 24
+[sub_resource type="Theme" id="Theme_gfy7w"]
+default_font = ExtResource("4_5koev")
+default_font_size = 29
 
 [sub_resource type="Theme" id="Theme_nwq1y"]
 default_font_size = 18
@@ -33,39 +35,63 @@ scale = Vector2(1.4736842, 1.4736842)
 texture = ExtResource("2_nwq1y")
 
 [node name="Explanation" type="Node2D" parent="." unique_id=97629731]
-visible = false
 position = Vector2(394, 285)
 
-[node name="ColorRect" type="ColorRect" parent="Explanation" unique_id=1031100640]
-offset_left = -233.0
-offset_top = -194.0
-offset_right = 557.0
-offset_bottom = 246.0
-color = Color(0, 0.10980392, 0, 1)
+[node name="InstructionalPamphlet" type="Sprite2D" parent="Explanation" unique_id=1472239378]
+position = Vector2(343, 107)
+rotation = -0.21583787
+scale = Vector2(0.7996394, 0.74936473)
+texture = ExtResource("3_w7psy")
 
-[node name="Label" type="RichTextLabel" parent="Explanation" unique_id=896933325]
-offset_left = -151.0
-offset_top = -148.0
-offset_right = 476.0
-offset_bottom = 198.0
-theme = SubResource("Theme_3q3va")
+[node name="RichTextLabel2" type="RichTextLabel" parent="Explanation" unique_id=560507991]
+offset_left = -35.999996
+offset_top = -17.925991
+offset_right = 421.6303
+offset_bottom = 108.57962
+rotation = -0.22718345
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_5koev")
 bbcode_enabled = true
-text = "[b]הקשב![/b]
+text = "חוקי המשחק כדלקמן:
+1. יש להשתמש בעכבר, ואך ורק בעכבר.
+2. אתם תשחקו במשחקונים. לכל  משח-"
+horizontal_alignment = 2
 
-החוקים של המשחק הזה פשוטים מאוד.
-[b]ראשית,[/b] יש להשתמש בעכבר, ואך ורק בעכבר.
-[b]שנית,[/b] אתם הולכים לשחק במשחקונים. לכל משחקון יש חוקים שונים. יש לכם כמה שניות להבין מה קורה, ולהצליח.
+[node name="RichTextLabel3" type="RichTextLabel" parent="Explanation" unique_id=1840358988]
+offset_left = 39.999992
+offset_top = 281.00003
+offset_right = 517.39264
+offset_bottom = 439.26318
+rotation = -0.2849587
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_5koev")
+bbcode_enabled = true
+text = "אם יש משחק שאינכם מצליחים לפענך את חוקיו, עליכם לרדת למצב 2. זה לא יעזור, ואף יחמיר את הבעיה, אך זו כבר
+לא הבעיה שלנו."
+horizontal_alignment = 2
 
-\"אבל המפקד, מה אם אנחנו לא מצליחים להבין מה המטרה?\"
-באסה. תתמודדו. על השאלה המטומטמת הזאת, כולם יורדים למצב שתיים."
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="RichTextLabel" type="RichTextLabel" parent="Explanation" unique_id=1538885211]
+offset_left = -15.734051
+offset_top = 96.37454
+offset_right = 385.34293
+offset_bottom = 254.6377
+rotation = -0.22718345
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_5koev")
+bbcode_enabled = true
+text = "-קון יש חוקים שונים. עליכם לפענך את חוקי המשחק, ולהצליחו, בזמן המוקצב."
+horizontal_alignment = 2
 
 [node name="ExitExplanation" type="Button" parent="Explanation" unique_id=2136736572]
-offset_left = -219.0
-offset_top = 179.0
-offset_right = -23.0
-offset_bottom = 234.0
+modulate = Color(1, 1, 1, 0)
+offset_left = -394.7273
+offset_top = -286.99997
+offset_right = 756.4956
+offset_bottom = 368.5884
+rotation = -0.0038476586
 theme = SubResource("Theme_nwq1y")
 theme_override_colors/font_color = Color(0.7768763, 0.3564352, 0.34168687, 1)
 text = "סיימנו עם הקיטבק"
