@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if bitedown_area.overlaps_area(schnitzel_fork.food_area) and !player_won_at_microgame:
 		schnitzel_fork.is_active = false;
 		open_mouth_sprite.visible = false;

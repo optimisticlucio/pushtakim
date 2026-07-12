@@ -1,11 +1,34 @@
 [gd_scene format=3 uid="uid://de15qku6dlr6d"]
 
 [ext_resource type="Script" uid="uid://dmvm0hkjejwak" path="res://scripts/microgames/matzav_shtaim.gd" id="1_tikfh"]
+[ext_resource type="AudioStream" uid="uid://dcvdwgoyjr1n" path="res://assets/audio/microgames/matzav_shtaim/splat.wav" id="2_uc34g"]
+[ext_resource type="Texture2D" uid="uid://c2lmk60x8bl5p" path="res://assets/img/microgames/matzav_shtaim/background.png" id="3_20ys0"]
+[ext_resource type="Texture2D" uid="uid://b5m3lcctp1qry" path="res://assets/img/microgames/matzav_shtaim/holding.png" id="4_bsvgj"]
+[ext_resource type="Texture2D" uid="uid://bwrc6jwdtyqys" path="res://assets/img/microgames/matzav_shtaim/fallen.png" id="5_hm0ap"]
 
 [node name="MatzavShtaim" type="Node2D" unique_id=628851922]
 script = ExtResource("1_tikfh")
-total_movement_to_lose = 100.0
+total_movement_to_lose = 20.0
 microgame_name = "Matzav Shtaim"
 hebrew_action_verb = "לא לזוז"
 length_in_seconds = 5.0
 player_wins_upon_timeout = true
+
+[node name="Splat" type="AudioStreamPlayer" parent="." unique_id=194290523]
+stream = ExtResource("2_uc34g")
+volume_db = -14.596
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1235367257]
+position = Vector2(575.5, 369.24146)
+scale = Vector2(0.65849483, 0.65849483)
+texture = ExtResource("3_20ys0")
+
+[node name="Holding" type="Sprite2D" parent="." unique_id=971274462]
+position = Vector2(559.4, 367.32)
+scale = Vector2(0.56, 0.56)
+texture = ExtResource("4_bsvgj")
+
+[node name="Fallen" type="Sprite2D" parent="." unique_id=40186580]
+position = Vector2(546.4, 388.32)
+scale = Vector2(0.56, 0.56)
+texture = ExtResource("5_hm0ap")

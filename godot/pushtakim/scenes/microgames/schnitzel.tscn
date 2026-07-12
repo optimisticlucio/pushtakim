@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c04bmw7oiitfn" path="res://scripts/microgames/schnitzel.gd" id="1_qcfgj"]
 [ext_resource type="Texture2D" uid="uid://by3aar8voxrjy" path="res://assets/img/microgames/schnitzel/spritemap.png" id="2_6nxf6"]
-[ext_resource type="Texture2D" uid="uid://quthvsei2ofu" path="res://assets/img/test_imgs/army_food_court.webp" id="2_7traw"]
+[ext_resource type="PackedScene" uid="uid://d3j18tkscvv3l" path="res://scenes/food_court_background.tscn" id="2_7traw"]
 [ext_resource type="PackedScene" uid="uid://2lnr6fyc42t3" path="res://scenes/microgames/schnitzel/fork.tscn" id="3_62lnx"]
 [ext_resource type="AudioStream" uid="uid://crwoenpsiuty8" path="res://assets/audio/microgames/schnitzel/meow.wav" id="4_o073s"]
 
@@ -20,10 +20,7 @@ microgame_name = "Schnitzel Eating"
 hebrew_action_verb = "לאכול"
 length_in_seconds = 4.5
 
-[node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=447291466]
-position = Vector2(580.60986, 318.75)
-scale = Vector2(1.5956721, 1.5956721)
-texture = ExtResource("2_7traw")
+[node name="FoodCourtBackground" parent="." unique_id=2078272592 instance=ExtResource("2_7traw")]
 
 [node name="Fork" parent="." unique_id=494767471 instance=ExtResource("3_62lnx")]
 position = Vector2(1037, 342)
