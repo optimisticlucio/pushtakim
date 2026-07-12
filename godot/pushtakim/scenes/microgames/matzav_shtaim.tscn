@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://de15qku6dlr6d"]
+
+[ext_resource type="Script" uid="uid://dmvm0hkjejwak" path="res://scripts/microgames/matzav_shtaim.gd" id="1_tikfh"]
+
+[node name="MatzavShtaim" type="Node2D" unique_id=628851922]
+script = ExtResource("1_tikfh")
+total_movement_to_lose = 100.0
+microgame_name = "Matzav Shtaim"
+hebrew_action_verb = "לא לזוז"
+length_in_seconds = 5.0
+player_wins_upon_timeout = true

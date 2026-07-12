@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Pushtakim"
+config/name="Ad Matai"
 run/main_scene="uid://b0s7mpt6d0lbx"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://du8xlnulwfrh1"
 
 [input]
 
