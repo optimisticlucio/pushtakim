@@ -13,6 +13,6 @@ length_in_seconds = 7.5
 [node name="FoodCourtBackground" parent="." unique_id=2078272592 instance=ExtResource("3_yyjob")]
 
 [node name="TheKremboInQuestion" parent="." unique_id=1234685278 instance=ExtResource("2_yyjob")]
-position = Vector2(580, 270)
-scale = Vector2(2.757351, 2.7573476)
+position = Vector2(584.99994, 313)
+scale = Vector2(3.862, 3.862)
 bite_radius = 125

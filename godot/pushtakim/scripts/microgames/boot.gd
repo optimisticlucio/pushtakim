@@ -19,9 +19,13 @@ var brush_movement_so_far: float = 0;
 
 var previous_brush_location: Vector2 = Vector2(0,0);
 
+var mouse_is_in_brushable_area: bool = false;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	previous_brush_location = brush.position;
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,6 +36,10 @@ func _process(delta: float) -> void:
 	var current_brush_location = brush.position;
 	var total_movement_this_delta = current_brush_location.distance_to(previous_brush_location);
 	previous_brush_location = current_brush_location;
+	
+	# If the mouse isn't cleaning the boot - it's not cleaning anything.
+	if !is_mouse_over_area():
+		total_movement_this_delta = 0;
 	
 	brush_movement_so_far += total_movement_this_delta;
 	# Update opacities
@@ -52,3 +60,15 @@ func _process(delta: float) -> void:
 
 func get_progress_in_microgame() -> float:
 	return min(1, brush_movement_so_far/total_movement_to_win)
+
+
+func is_mouse_over_area() -> bool:
+	var params = PhysicsPointQueryParameters2D.new()
+	params.position = get_global_mouse_position()
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	var results = get_world_2d().direct_space_state.intersect_point(params)
+	for result in results:
+		if result.collider == $BrushableArea:
+			return true
+	return false

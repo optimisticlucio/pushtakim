@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://d3j18tkscvv3l"]
 
-[ext_resource type="Texture2D" uid="uid://quthvsei2ofu" path="res://assets/img/test_imgs/army_food_court.webp" id="1_ddj2b"]
+[ext_resource type="Texture2D" uid="uid://dt3uqtsncyfa" path="res://assets/img/food_court.png" id="2_ddj2b"]
 [ext_resource type="AudioStream" uid="uid://btq0nnl4ewumw" path="res://assets/audio/cafeteria_ambiance.wav" id="2_u71ii"]
 
 [node name="FoodCourtBackground" type="Node2D" unique_id=2078272592]
-
-[node name="ArmyFoodCourt" type="Sprite2D" parent="." unique_id=591645311]
-position = Vector2(580.60986, 318.75)
-scale = Vector2(1.5956721, 1.5956721)
-texture = ExtResource("1_ddj2b")
 
 [node name="CafeteriaAmbiance" type="AudioStreamPlayer" parent="." unique_id=164479991]
 stream = ExtResource("2_u71ii")
 volume_db = -0.912
 autoplay = true
+
+[node name="FoodCourt" type="Sprite2D" parent="." unique_id=1215324546]
+position = Vector2(576, 344)
+scale = Vector2(0.6623347, 0.6623347)
+texture = ExtResource("2_ddj2b")

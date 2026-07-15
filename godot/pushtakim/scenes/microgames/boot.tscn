@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://by82yftwehhvl" path="res://scripts/microgames/boot.gd" id="1_yybry"]
 [ext_resource type="Texture2D" uid="uid://ctboyo5q43ch1" path="res://assets/img/microgames/boot/clean_boot.png" id="2_0ygkm"]
+[ext_resource type="Texture2D" uid="uid://dpusv0t6grrwt" path="res://assets/img/microgames/boot/background.png" id="2_ki2ti"]
 [ext_resource type="Texture2D" uid="uid://wsw13o8rarn7" path="res://assets/img/microgames/boot/dirty_boot.png" id="3_lbjgl"]
 [ext_resource type="Texture2D" uid="uid://dpslsvofb2wl5" path="res://assets/img/microgames/boot/brush.png" id="4_lbjgl"]
 [ext_resource type="AudioStream" uid="uid://xma0gs0ouu36" path="res://assets/audio/microgames/brush/brush.wav" id="5_ob3xv"]
@@ -15,12 +16,17 @@ total_movement_to_win = 6500.0
 hebrew_action_verb = "לגלחץ"
 length_in_seconds = 6.0
 
+[node name="Background" type="Sprite2D" parent="." unique_id=15140433]
+position = Vector2(554.1603, 324.87216)
+scale = Vector2(0.68237424, 0.6823744)
+texture = ExtResource("2_ki2ti")
+
 [node name="DirtyBoot" type="Sprite2D" parent="." unique_id=2101140671]
-position = Vector2(544, 360)
+position = Vector2(443, 301.8)
 texture = ExtResource("3_lbjgl")
 
 [node name="CleanBoot" type="Sprite2D" parent="." unique_id=439192880]
-position = Vector2(544, 360)
+position = Vector2(443, 301.8)
 texture = ExtResource("2_0ygkm")
 
 [node name="Brush" type="Sprite2D" parent="." unique_id=659177072]
@@ -35,5 +41,6 @@ stream = ExtResource("5_ob3xv")
 position = Vector2(68, 125)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BrushableArea" unique_id=1216052621]
-position = Vector2(-56, -70)
-polygon = PackedVector2Array(573, 111, 714, 112, 726, 317, 702, 480, 574, 512, 359, 517, 346, 323, 536, 284)
+position = Vector2(-328.96777, -225)
+scale = Vector2(1.3102059, 1.2615454)
+polygon = PackedVector2Array(552.5603, 114.9384, 715.89343, 118.109116, 774.66284, 317.07144, 743.37, 511.27768, 578.51044, 543.7775, 348.77557, 537.4361, 346, 323, 448.75983, 236.21823)
