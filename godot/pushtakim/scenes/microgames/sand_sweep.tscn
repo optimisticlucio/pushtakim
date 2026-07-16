@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bi4io66y1aaw0"]
+
+[ext_resource type="Script" uid="uid://bpt7ek4d10u44" path="res://scripts/microgames/sand_sweep.gd" id="1_w5h6w"]
+
+[node name="SandSweep" type="Node2D" unique_id=966983184]
+script = ExtResource("1_w5h6w")
+microgame_name = "Sand Sweeo"
+hebrew_action_verb = "לטאטא"
+length_in_seconds = 6.0

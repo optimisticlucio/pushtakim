@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bj53t5fh41stu"]
+
+[ext_resource type="Script" uid="uid://4bg1aehey7jc" path="res://scripts/microgames/safari_protocol.gd" id="1_3ujyg"]
+
+[node name="SafariProtocol" type="Node2D" unique_id=476341887]
+script = ExtResource("1_3ujyg")
+microgame_name = "Safari Protocol"
+hebrew_action_verb = "נוהל ספרי"
+length_in_seconds = 5.0
+
+[node name="GateTwoTrigger" type="Button" parent="." unique_id=487626317]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 637.0
+offset_top = 422.0
+offset_right = 790.0
+offset_bottom = 505.0
+
+[node name="GateOneTrigger" type="Button" parent="." unique_id=933039946]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 266.0
+offset_top = 369.0
+offset_right = 343.0
+offset_bottom = 428.0

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://blosv8d0ojeth"]
+
+[ext_resource type="Script" uid="uid://dt8t73574udob" path="res://scripts/microgames/sand_sweep/broom.gd" id="1_vp6yl"]
+
+[node name="Broom" type="Node2D" unique_id=165009945]
+script = ExtResource("1_vp6yl")

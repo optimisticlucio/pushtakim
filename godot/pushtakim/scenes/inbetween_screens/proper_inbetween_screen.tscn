@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bk2tw4qspdgxj"]
+
+[ext_resource type="Texture2D" uid="uid://bktcsqd6416af" path="res://assets/img/transition_screen.png" id="1_3gc3l"]
+[ext_resource type="Script" uid="uid://bxuga67lvcwas" path="res://scripts/inbetween_screens/proper_inbetween_screen.gd" id="1_3520c"]
+[ext_resource type="FontFile" uid="uid://bg8cm4iyhg2u" path="res://assets/fonts/Karantina-Regular.ttf" id="2_3520c"]
+
+[sub_resource type="Theme" id="Theme_gfy7w"]
+
+[node name="ProperInbetweenScreen" type="Node2D" unique_id=1947440067]
+script = ExtResource("1_3520c")
+
+[node name="TransitionScreen" type="Sprite2D" parent="." unique_id=182881526]
+position = Vector2(575, 324.00003)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_3gc3l")
+
+[node name="ActionLabel" type="Label" parent="." unique_id=128282922]
+offset_left = 389.0
+offset_top = 259.0
+offset_right = 734.0
+offset_bottom = 383.0
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/font_color = Color(1, 0.91764706, 0.28627452, 1)
+theme_override_fonts/font = ExtResource("2_3520c")
+theme_override_font_sizes/font_size = 97
+text = "לעשות!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives" type="Label" parent="." unique_id=879946302]
+offset_left = 412.1249
+offset_top = 456.40305
+offset_right = 699.1676
+offset_bottom = 531.4031
+rotation = 0.047108065
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/font_color = Color(1, 0.91764706, 0.28627452, 1)
+theme_override_fonts/font = ExtResource("2_3520c")
+theme_override_font_sizes/font_size = 73
+text = "פסילות: X/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AndNow" type="Label" parent="." unique_id=877955980]
+offset_left = 464.0
+offset_top = 133.0
+offset_right = 647.0
+offset_bottom = 205.0
+theme = SubResource("Theme_gfy7w")
+theme_override_colors/font_color = Color(1, 0.91764706, 0.28627452, 1)
+theme_override_fonts/font = ExtResource("2_3520c")
+theme_override_font_sizes/font_size = 73
+text = "ועכשיו..."
+horizontal_alignment = 1
+vertical_alignment = 1
