@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://b0s7mpt6d0lbx"]
 
 [ext_resource type="Script" uid="uid://crbmmj5vjh7wx" path="res://scripts/test_main_menu.gd" id="1_3q3va"]
-[ext_resource type="Texture2D" uid="uid://du8xlnulwfrh1" path="res://assets/img/simple_logo.png" id="2_nwq1y"]
+[ext_resource type="Texture2D" uid="uid://c76eompc2xvcb" path="res://assets/img/start_game_button.png" id="3_md7qj"]
 [ext_resource type="Texture2D" uid="uid://c6k7seqcbcaia" path="res://assets/img/instructional_pamphlet.png" id="3_w7psy"]
 [ext_resource type="FontFile" uid="uid://dlnsvf3juc4n6" path="res://assets/fonts/SuezOne-Regular.ttf" id="4_5koev"]
+[ext_resource type="Texture2D" uid="uid://d11i2ceg8434m" path="res://assets/img/start_game_hover.png" id="4_qb225"]
+[ext_resource type="Texture2D" uid="uid://v4bqjbeehjt" path="res://assets/img/main_menu.png" id="5_7am5h"]
+[ext_resource type="Texture2D" uid="uid://dac6j72orwiiq" path="res://assets/img/how_to_play.png" id="5_qb225"]
+[ext_resource type="Texture2D" uid="uid://durhpome02djb" path="res://assets/img/how_to_play_hover.png" id="6_7am5h"]
 
 [sub_resource type="Theme" id="Theme_gfy7w"]
 default_font = ExtResource("4_5koev")
@@ -15,26 +19,30 @@ default_font_size = 18
 [node name="TestMainMenu" type="Node2D" unique_id=1704513637]
 script = ExtResource("1_3q3va")
 
-[node name="ExplanationButton" type="Button" parent="." unique_id=1170128489]
-offset_left = 393.0
-offset_top = 315.0
-offset_right = 757.0
-offset_bottom = 418.0
-text = "מה החוקים?"
+[node name="StartGame" type="TextureButton" parent="." unique_id=242600161]
+offset_left = 113.99999
+offset_top = 327.0
+offset_right = 838.0
+offset_bottom = 804.0
+scale = Vector2(0.67999846, 0.67999846)
+texture_normal = ExtResource("3_md7qj")
+texture_hover = ExtResource("4_qb225")
 
-[node name="StartButton" type="Button" parent="." unique_id=904610506]
-offset_left = 394.0
-offset_top = 456.0
-offset_right = 758.0
-offset_bottom = 559.0
-text = "התחל משחק!"
+[node name="MainMenu" type="Sprite2D" parent="." unique_id=1183045463]
+position = Vector2(573.76044, 324.50003)
+scale = Vector2(0.68105245, 0.68105257)
+texture = ExtResource("5_7am5h")
 
-[node name="SimpleLogo" type="Sprite2D" parent="." unique_id=1386118959]
-position = Vector2(571, 140.00002)
-scale = Vector2(1.4736842, 1.4736842)
-texture = ExtResource("2_nwq1y")
+[node name="Explain" type="TextureButton" parent="MainMenu" unique_id=1875861032]
+offset_left = 128.09521
+offset_top = 66.80823
+offset_right = 787.0952
+offset_bottom = 281.80823
+texture_normal = ExtResource("5_qb225")
+texture_hover = ExtResource("6_7am5h")
 
 [node name="Explanation" type="Node2D" parent="." unique_id=97629731]
+visible = false
 position = Vector2(394, 285)
 
 [node name="InstructionalPamphlet" type="Sprite2D" parent="Explanation" unique_id=1472239378]
@@ -96,6 +104,6 @@ theme = SubResource("Theme_nwq1y")
 theme_override_colors/font_color = Color(0.7768763, 0.3564352, 0.34168687, 1)
 text = "סיימנו עם הקיטבק"
 
-[connection signal="pressed" from="ExplanationButton" to="." method="explanation_button_pressed"]
-[connection signal="pressed" from="StartButton" to="." method="start_button_pressed"]
+[connection signal="pressed" from="StartGame" to="." method="start_button_pressed"]
+[connection signal="pressed" from="MainMenu/Explain" to="." method="explanation_button_pressed"]
 [connection signal="pressed" from="Explanation/ExitExplanation" to="." method="exit_explanation_pressed"]

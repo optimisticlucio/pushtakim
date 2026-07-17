@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bavtrj0cjceof" path="res://scenes/microgames/boot.tscn" id="8_m7nmb"]
 [ext_resource type="PackedScene" uid="uid://gu6cy74a3he" path="res://scenes/microgames/bullet.tscn" id="9_5hasl"]
 [ext_resource type="PackedScene" uid="uid://di4ui8d2p6iew" path="res://scenes/overlays/can_overlay.tscn" id="9_7lj2p"]
+[ext_resource type="PackedScene" uid="uid://bj53t5fh41stu" path="res://scenes/microgames/safari_protocol.tscn" id="9_blxu5"]
 [ext_resource type="PackedScene" uid="uid://de15qku6dlr6d" path="res://scenes/microgames/matzav_shtaim.tscn" id="9_eni4m"]
 [ext_resource type="PackedScene" uid="uid://cic0jnvmrcc31" path="res://scenes/game_over_screens/test_game_over.tscn" id="9_k1o6b"]
 [ext_resource type="PackedScene" uid="uid://bk2tw4qspdgxj" path="res://scenes/inbetween_screens/proper_inbetween_screen.tscn" id="9_m7nmb"]
@@ -18,7 +19,7 @@
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
-microgames_for_this_session = Array[PackedScene]([ExtResource("3_kc1oo"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p"), ExtResource("8_m7nmb"), ExtResource("9_5hasl"), ExtResource("9_eni4m")])
+microgames_for_this_session = Array[PackedScene]([ExtResource("3_kc1oo"), ExtResource("5_ylu52"), ExtResource("6_7xyan"), ExtResource("7_7lj2p"), ExtResource("8_m7nmb"), ExtResource("9_5hasl"), ExtResource("9_eni4m"), ExtResource("9_blxu5")])
 inbetween_screens_for_this_session = Array[PackedScene]([ExtResource("9_m7nmb")])
 game_over_screen = ExtResource("9_k1o6b")
 microgame_holding_node = NodePath("MicrogameHolder")

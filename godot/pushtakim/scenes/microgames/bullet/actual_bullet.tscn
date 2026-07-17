@@ -26,3 +26,6 @@ region_rect = Rect2(0, 64.5, 182.7555, 525.76886)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1301675316]
 scale = Vector2(0.67453116, 0.67453116)
 shape = SubResource("CapsuleShape2D_gfy7w")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=374577838]
+scale = Vector2(3.524, 11.211)

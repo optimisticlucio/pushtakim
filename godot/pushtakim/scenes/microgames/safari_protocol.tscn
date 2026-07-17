@@ -1,23 +1,128 @@
 [gd_scene format=3 uid="uid://bj53t5fh41stu"]
 
 [ext_resource type="Script" uid="uid://4bg1aehey7jc" path="res://scripts/microgames/safari_protocol.gd" id="1_3ujyg"]
+[ext_resource type="PackedScene" uid="uid://tlfika4ppp50" path="res://scenes/microgames/safari_protocol/safari_gate.tscn" id="2_0pn0w"]
+[ext_resource type="Texture2D" uid="uid://cbyyaesh0bqm1" path="res://assets/img/microgames/safari/background.png" id="2_q5yfr"]
+[ext_resource type="AudioStream" uid="uid://csu4ww0m0t74f" path="res://assets/audio/microgames/bullet/desert_background_noise.mp3" id="3_7qwb6"]
+[ext_resource type="Texture2D" uid="uid://bmxr400aohb1x" path="res://assets/img/microgames/safari/escaping_soldier.png" id="5_1fnwn"]
+[ext_resource type="Texture2D" uid="uid://bk3oyemfuqjny" path="res://assets/img/microgames/safari/truck.png" id="5_wlo00"]
+
+[sub_resource type="Animation" id="Animation_wlo00"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1347, 362)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Truck:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(107.00001, 425.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_ounpu"]
+resource_name = "pass_first_gate"
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Truck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(0.4204482, 1),
+"update": 0,
+"values": [Vector2(107.00001, 425.00003), Vector2(638, 424.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_r0g8n"]
+resource_name = "pass_second_gate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Truck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1.8660665, 1),
+"update": 0,
+"values": [Vector2(638, 424.00003), Vector2(1422, 427.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_dl836"]
+resource_name = "soldier_escape"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(0.8122524, 1),
+"update": 0,
+"values": [Vector2(1300, 472), Vector2(-145, 481)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ounpu"]
+_data = {
+&"RESET": SubResource("Animation_wlo00"),
+&"pass_first_gate": SubResource("Animation_ounpu"),
+&"pass_second_gate": SubResource("Animation_r0g8n"),
+&"soldier_escape": SubResource("Animation_dl836")
+}
 
 [node name="SafariProtocol" type="Node2D" unique_id=476341887]
 script = ExtResource("1_3ujyg")
 microgame_name = "Safari Protocol"
-hebrew_action_verb = "נוהל ספרי"
+hebrew_action_verb = "נוהל ספארי"
 length_in_seconds = 5.0
 
-[node name="GateTwoTrigger" type="Button" parent="." unique_id=487626317]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 637.0
-offset_top = 422.0
-offset_right = 790.0
-offset_bottom = 505.0
+[node name="Background" type="Sprite2D" parent="." unique_id=855675840]
+z_index = -3
+position = Vector2(565, 321)
+scale = Vector2(0.67, 0.705)
+texture = ExtResource("2_q5yfr")
 
-[node name="GateOneTrigger" type="Button" parent="." unique_id=933039946]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 266.0
-offset_top = 369.0
-offset_right = 343.0
-offset_bottom = 428.0
+[node name="SecondGate" parent="." unique_id=957288056 instance=ExtResource("2_0pn0w")]
+position = Vector2(907, 383.99997)
+scale = Vector2(0.755, 0.755)
+
+[node name="FirstGate" parent="." unique_id=2118159700 instance=ExtResource("2_0pn0w")]
+position = Vector2(393, 380.00003)
+scale = Vector2(0.775, 0.775)
+
+[node name="Truck" type="Sprite2D" parent="." unique_id=1236339266]
+position = Vector2(107.00001, 425.00003)
+scale = Vector2(0.74302346, 0.74302346)
+texture = ExtResource("5_wlo00")
+
+[node name="DesertBackgroundNoise" type="AudioStreamPlayer" parent="." unique_id=2004365553]
+stream = ExtResource("3_7qwb6")
+volume_db = -11.86
+autoplay = true
+
+[node name="EscapingSoldier" type="Sprite2D" parent="." unique_id=418628360]
+position = Vector2(1347, 362)
+texture = ExtResource("5_1fnwn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2136006506]
+root_node = NodePath("../EscapingSoldier")
+libraries/ = SubResource("AnimationLibrary_ounpu")

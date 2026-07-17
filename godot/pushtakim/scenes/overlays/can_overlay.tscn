@@ -33,6 +33,7 @@ success_sprite = NodePath("Yes")
 fail_sprite = NodePath("No")
 
 [node name="Can" type="Sprite2D" parent="." unique_id=1495026174]
+z_index = 50
 material = SubResource("ShaderMaterial_mosyd")
 position = Vector2(86.31093, 555.4436)
 scale = Vector2(0.29654926, 0.29654926)
@@ -41,6 +42,7 @@ region_enabled = true
 region_rect = Rect2(114.461975, 227.47223, 470.76526, 558.6404)
 
 [node name="Fuse" type="Sprite2D" parent="." unique_id=2072914785]
+z_index = 50
 material = SubResource("ShaderMaterial_vn45d")
 position = Vector2(547.9752, 536.00006)
 scale = Vector2(0.42697802, 0.288126)
@@ -64,6 +66,7 @@ scale = Vector2(0.16414154, 0.16414154)
 texture = ExtResource("5_mosyd")
 
 [node name="Yes" type="Sprite2D" parent="." unique_id=1835002609]
+z_index = 50
 position = Vector2(79, 387)
 scale = Vector2(0.49927747, 0.49927744)
 texture = ExtResource("7_hrt3g")
@@ -71,6 +74,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 173.5, 174)
 
 [node name="No" type="Sprite2D" parent="." unique_id=982068807]
+z_index = 50
 position = Vector2(76.91736, 384.97473)
 scale = Vector2(0.50724375, 0.5072437)
 texture = ExtResource("7_hrt3g")

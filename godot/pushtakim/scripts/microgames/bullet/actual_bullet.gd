@@ -11,9 +11,11 @@ var damping := 16.0
 ### The offset on which the object was grabbed, when grabbed initially.
 var grab_offset := Vector2.ZERO  # set on pickup, in local space
 
+signal left_screen;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$VisibleOnScreenNotifier2D.screen_exited.connect(func(): left_screen.emit());
 
 func _physics_process(_delta):
 	if is_dragging:

@@ -12,6 +12,9 @@ var magazine: BulletMagazine = $Magazine;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	magazine.bullet_inserted.connect(on_bullet_insertion)
+	
+	for bullet in bullets_to_fill_in:
+		bullet.left_screen.connect(func(): set_player_lost_at_microgame())
 
 func on_bullet_insertion() -> void:
 	amount_of_bullets_to_fill_in -= 1;

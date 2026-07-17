@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://tlfika4ppp50"]
+
+[ext_resource type="Script" uid="uid://cfvorh8gunaa1" path="res://scripts/microgames/safari_protocol/safari_gate.gd" id="1_d6pet"]
+[ext_resource type="Texture2D" uid="uid://3hkxii8nw2ux" path="res://assets/img/microgames/safari/gate_sides.png" id="2_4w5db"]
+[ext_resource type="Texture2D" uid="uid://7wwl3pjc2ur8" path="res://assets/img/microgames/safari/gate_center.png" id="3_lh5dx"]
+[ext_resource type="AudioStream" uid="uid://bk1e5cdba0web" path="res://assets/audio/microgames/safari/gate_squeak.wav" id="4_lh5dx"]
+
+[node name="SafariGate" type="Node2D" unique_id=957288056]
+script = ExtResource("1_d6pet")
+
+[node name="GateSides" type="Sprite2D" parent="." unique_id=516387923]
+z_index = -2
+position = Vector2(-176, -25)
+texture = ExtResource("2_4w5db")
+region_enabled = true
+region_rect = Rect2(0, 0, 162.5, 756)
+
+[node name="GateCenter" type="Sprite2D" parent="." unique_id=209067533]
+z_index = 1
+position = Vector2(27, -27)
+texture = ExtResource("3_lh5dx")
+
+[node name="GateSides2" type="Sprite2D" parent="." unique_id=742050998]
+z_index = 2
+position = Vector2(173, -28)
+texture = ExtResource("2_4w5db")
+region_enabled = true
+region_rect = Rect2(297.06992, 0, 255.30997, 756)
+
+[node name="Button" type="Button" parent="." unique_id=958760197]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -93.99999
+offset_top = -355.99997
+offset_right = 336.0
+offset_bottom = -145.99997
+rotation = 0.9461548
+scale = Vector2(1.5887824, 1.1904781)
+
+[node name="GateSqueak" type="AudioStreamPlayer" parent="." unique_id=1202425508]
+stream = ExtResource("4_lh5dx")
+volume_db = -23.719
