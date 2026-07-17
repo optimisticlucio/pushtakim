@@ -15,6 +15,11 @@ run/main_scene="uid://b0s7mpt6d0lbx"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="uid://du8xlnulwfrh1"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 game_click={
