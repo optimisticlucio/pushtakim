@@ -17,7 +17,7 @@ open_mouth_sprite = NodePath("Open Mouth")
 closed_mouth_sprite = NodePath("Closed Mouth")
 victory_sfx = NodePath("Meow")
 microgame_name = "Schnitzel Eating"
-hebrew_action_verb = "לאכול"
+hebrew_action_verb = "לאכול שניצל"
 length_in_seconds = 4.5
 
 [node name="FoodCourtBackground" parent="." unique_id=2078272592 instance=ExtResource("2_7traw")]

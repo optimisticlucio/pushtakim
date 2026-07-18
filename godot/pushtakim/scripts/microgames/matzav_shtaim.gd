@@ -27,6 +27,13 @@ func _process(delta: float) -> void:
 
 	if !players_victory_status_was_set && movement_so_far > total_movement_to_lose:
 		set_player_lost_at_microgame();
-		$Fallen.visible = true;
-		$Holding.visible = false;
-		$Splat.play();
+
+func on_player_loss() -> void:
+	$Fallen.visible = true;
+	$Holding.visible = false;
+	$Tick.stop();
+	$Splat.play();
+
+func on_player_victory() -> void:
+	$Tick.stop();
+	$Ding.play();

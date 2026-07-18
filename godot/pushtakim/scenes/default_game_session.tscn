@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d1wvr5445tewe" path="res://scripts/game_session.gd" id="1_whdcj"]
 [ext_resource type="PackedScene" uid="uid://bd4r6mlbyyq4m" path="res://scenes/microgames/salute.tscn" id="3_kc1oo"]
-[ext_resource type="AudioStream" uid="uid://ccdbv7pnmbtqg" path="res://assets/audio/nice.mp3" id="3_mtpdp"]
 [ext_resource type="Script" uid="uid://l8eovshfqd7b" path="res://scripts/play_sound_on_player_victory.gd" id="4_4vpq8"]
 [ext_resource type="PackedScene" uid="uid://rn053348bflm" path="res://scenes/microgames/krembo.tscn" id="5_ylu52"]
 [ext_resource type="PackedScene" uid="uid://d3dxmxm4tfmu2" path="res://scenes/microgames/moovit.tscn" id="6_7xyan"]
@@ -14,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://de15qku6dlr6d" path="res://scenes/microgames/matzav_shtaim.tscn" id="9_eni4m"]
 [ext_resource type="PackedScene" uid="uid://cic0jnvmrcc31" path="res://scenes/game_over_screens/test_game_over.tscn" id="9_k1o6b"]
 [ext_resource type="PackedScene" uid="uid://bk2tw4qspdgxj" path="res://scenes/inbetween_screens/proper_inbetween_screen.tscn" id="9_m7nmb"]
-[ext_resource type="AudioStream" uid="uid://btjer52up61tj" path="res://assets/audio/boo-womp.mp3" id="13_nnsh4"]
+[ext_resource type="AudioStream" uid="uid://shtynysgh4bv" path="res://assets/audio/fanfare.mp3" id="13_5hasl"]
 [ext_resource type="Script" uid="uid://50mrgboykow6" path="res://scripts/player_fail_noise.gd" id="13_qkumw"]
+[ext_resource type="AudioStream" uid="uid://c5xnpuisyc0cx" path="res://assets/audio/fail.wav" id="15_eni4m"]
 
 [node name="DefaultGameSession" type="Node2D" unique_id=1082401331 node_paths=PackedStringArray("microgame_holding_node", "overlay_node")]
 script = ExtResource("1_whdcj")
@@ -35,12 +35,13 @@ metadata/_custom_type_script = "uid://d1wvr5445tewe"
 [node name="CanOverlay" parent="." unique_id=19033801 instance=ExtResource("9_7lj2p")]
 
 [node name="PlayerSuccessNoise" type="AudioStreamPlayer" parent="." unique_id=478529751 node_paths=PackedStringArray("parent_game_session")]
-stream = ExtResource("3_mtpdp")
-volume_db = -2.862
+stream = ExtResource("13_5hasl")
+volume_db = -8.336
 script = ExtResource("4_4vpq8")
 parent_game_session = NodePath("..")
 
 [node name="PlayerFailNoise" type="AudioStreamPlayer" parent="." unique_id=695610384 node_paths=PackedStringArray("parent_game_session")]
-stream = ExtResource("13_nnsh4")
+stream = ExtResource("15_eni4m")
+volume_db = -7.298
 script = ExtResource("13_qkumw")
 parent_game_session = NodePath("..")

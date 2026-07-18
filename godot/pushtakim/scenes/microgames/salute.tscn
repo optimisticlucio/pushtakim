@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7cksdgk56dkj" path="res://scripts/microgames/salute.gd" id="1_piji6"]
 [ext_resource type="AudioStream" uid="uid://btdyu7guefagj" path="res://assets/audio/microgames/salute/music.mp3" id="2_8p2x6"]
 [ext_resource type="PackedScene" uid="uid://cgfes32nltt20" path="res://scenes/microgames/salute/soldier.tscn" id="3_8p2x6"]
+[ext_resource type="Texture2D" uid="uid://bljmi70yfspuj" path="res://assets/img/microgames/salute/background.png" id="3_la31m"]
 
 [node name="Salute" type="Node2D" unique_id=1163983610 node_paths=PackedStringArray("audio_stream_node", "npc_soldiers", "player_soldier")]
 script = ExtResource("1_piji6")
@@ -12,20 +13,31 @@ track_to_salute_to = ExtResource("2_8p2x6")
 time_to_salute_to = 16.7
 bounce_frequency = 0.392
 salute_lenience = 0.4
-npc_soldiers = [NodePath("Soldier2"), NodePath("Soldier3")]
+npc_soldiers = [NodePath("Soldier2"), NodePath("Soldier3"), NodePath("Soldier4"), NodePath("Soldier5")]
 player_soldier = NodePath("Soldier")
 microgame_name = "Salute"
 hebrew_action_verb = "להצדיע"
 length_in_seconds = 3.2
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1861307595]
+scale = Vector2(0.685, 0.685)
+texture = ExtResource("3_la31m")
+centered = false
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1254074362]
 volume_db = -20.0
 
 [node name="Soldier" parent="." unique_id=1966556482 instance=ExtResource("3_8p2x6")]
-position = Vector2(161, 515)
+position = Vector2(323, 512)
 
 [node name="Soldier2" parent="." unique_id=1858030967 instance=ExtResource("3_8p2x6")]
 position = Vector2(540, 509)
 
+[node name="Soldier4" parent="." unique_id=468137667 instance=ExtResource("3_8p2x6")]
+position = Vector2(771, 508)
+
 [node name="Soldier3" parent="." unique_id=411797301 instance=ExtResource("3_8p2x6")]
-position = Vector2(926, 514)
+position = Vector2(988, 511)
+
+[node name="Soldier5" parent="." unique_id=1467842988 instance=ExtResource("3_8p2x6")]
+position = Vector2(116, 512)

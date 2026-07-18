@@ -52,6 +52,7 @@ func set_player_won_at_microgame() -> void:
 	
 	player_won_at_microgame = true;
 	players_victory_status_was_set = true;
+	on_player_victory();
 	player_wins_at_microgame.emit();
 
 ## When run, declares the player has lost the microgame.
@@ -62,8 +63,17 @@ func set_player_lost_at_microgame() -> void:
 	
 	player_won_at_microgame = false;
 	players_victory_status_was_set = true;
+	on_player_loss();
 	player_loses_at_microgame.emit();
 
 ## Returns whether or not the player won at the microgame.
 func player_has_won_at_microgame() -> bool:
 	return player_won_at_microgame;
+
+## Runs if the player wins.
+func on_player_victory() -> void:
+	pass
+
+## Runs if the player loses
+func on_player_loss() -> void:
+	pass

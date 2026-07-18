@@ -42,7 +42,6 @@ texture_normal = ExtResource("5_qb225")
 texture_hover = ExtResource("6_7am5h")
 
 [node name="Explanation" type="Node2D" parent="." unique_id=97629731]
-visible = false
 position = Vector2(394, 285)
 
 [node name="InstructionalPamphlet" type="Sprite2D" parent="Explanation" unique_id=1472239378]
@@ -63,7 +62,7 @@ theme_override_fonts/normal_font = ExtResource("4_5koev")
 bbcode_enabled = true
 text = "חוקי המשחק כדלקמן:
 1. יש להשתמש בעכבר, ואך ורק בעכבר.
-2. אתם תשחקו במשחקונים. לכל  משח-"
+2. אתם תשחקו במשחקונים. לכל"
 horizontal_alignment = 2
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Explanation" unique_id=1840358988]
@@ -90,7 +89,7 @@ theme = SubResource("Theme_gfy7w")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_5koev")
 bbcode_enabled = true
-text = "-קון יש חוקים שונים. עליכם לפענך את חוקי המשחק, ולהצליחו, בזמן המוקצב."
+text = "משחקון חוקים שונים. עליכם לפענך את חוקי המשחקון, ולהצליחו, בזמן המוקצב."
 horizontal_alignment = 2
 
 [node name="ExitExplanation" type="Button" parent="Explanation" unique_id=2136736572]

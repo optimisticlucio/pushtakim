@@ -7,7 +7,7 @@
 [node name="Krembo" type="Node2D" unique_id=136548885 node_paths=PackedStringArray("the_krembo")]
 script = ExtResource("1_k1hyc")
 the_krembo = NodePath("TheKremboInQuestion")
-hebrew_action_verb = "לאכול"
+hebrew_action_verb = "לאכול סנדויץ'"
 length_in_seconds = 7.5
 
 [node name="FoodCourtBackground" parent="." unique_id=2078272592 instance=ExtResource("3_yyjob")]

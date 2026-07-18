@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c2lmk60x8bl5p" path="res://assets/img/microgames/matzav_shtaim/background.png" id="3_20ys0"]
 [ext_resource type="Texture2D" uid="uid://b5m3lcctp1qry" path="res://assets/img/microgames/matzav_shtaim/holding.png" id="4_bsvgj"]
 [ext_resource type="Texture2D" uid="uid://bwrc6jwdtyqys" path="res://assets/img/microgames/matzav_shtaim/fallen.png" id="5_hm0ap"]
+[ext_resource type="AudioStream" uid="uid://c6dn41afesvk1" path="res://assets/audio/microgames/matzav_shtaim/tick.mp3" id="6_bsvgj"]
+[ext_resource type="AudioStream" uid="uid://cckjk8jwsl2bd" path="res://assets/audio/microgames/matzav_shtaim/ding.wav" id="7_hm0ap"]
 
 [node name="MatzavShtaim" type="Node2D" unique_id=628851922]
 script = ExtResource("1_tikfh")
@@ -32,3 +34,10 @@ texture = ExtResource("4_bsvgj")
 position = Vector2(546.4, 388.32)
 scale = Vector2(0.56, 0.56)
 texture = ExtResource("5_hm0ap")
+
+[node name="Tick" type="AudioStreamPlayer" parent="." unique_id=783568169]
+stream = ExtResource("6_bsvgj")
+autoplay = true
+
+[node name="Ding" type="AudioStreamPlayer" parent="." unique_id=248642667]
+stream = ExtResource("7_hm0ap")

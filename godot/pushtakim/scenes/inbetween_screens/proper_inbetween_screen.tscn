@@ -7,6 +7,7 @@
 [sub_resource type="Theme" id="Theme_gfy7w"]
 
 [node name="ProperInbetweenScreen" type="Node2D" unique_id=1947440067]
+scale = Vector2(1.0052764, 1.0052764)
 script = ExtResource("1_3520c")
 
 [node name="TransitionScreen" type="Sprite2D" parent="." unique_id=182881526]
@@ -26,6 +27,7 @@ theme_override_font_sizes/font_size = 97
 text = "לעשות!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Lives" type="Label" parent="." unique_id=879946302]
 offset_left = 412.1249
@@ -40,6 +42,7 @@ theme_override_font_sizes/font_size = 73
 text = "פסילות: X/3"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AndNow" type="Label" parent="." unique_id=877955980]
 offset_left = 464.0
@@ -53,3 +56,4 @@ theme_override_font_sizes/font_size = 73
 text = "ועכשיו..."
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

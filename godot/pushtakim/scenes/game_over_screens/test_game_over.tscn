@@ -1,56 +1,80 @@
 [gd_scene format=3 uid="uid://cic0jnvmrcc31"]
 
 [ext_resource type="Script" uid="uid://dc3u64e0mj7f0" path="res://scripts/test_game_over.gd" id="1_s6b3r"]
-[ext_resource type="Texture2D" uid="uid://d87na6kowc3g" path="res://assets/img/playtest_qr.png" id="2_obmb5"]
+[ext_resource type="Texture2D" uid="uid://nf0ihbfdgnu6" path="res://assets/img/game_over_screen.png" id="2_334kd"]
+[ext_resource type="Texture2D" uid="uid://c3uirb7uvsvbg" path="res://assets/img/try_again.png" id="3_hrek2"]
+[ext_resource type="Texture2D" uid="uid://ciitnxmg8js5i" path="res://assets/img/try_again_hover.png" id="4_jppnr"]
+[ext_resource type="FontFile" uid="uid://dlnsvf3juc4n6" path="res://assets/fonts/SuezOne-Regular.ttf" id="5_hrek2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_q0hf3"]
-font_size = 64
-
-[sub_resource type="LabelSettings" id="LabelSettings_wr3va"]
-font_size = 23
+[sub_resource type="Theme" id="Theme_jppnr"]
+default_font = ExtResource("5_hrek2")
+default_font_size = 29
 
 [node name="TestGameOver" type="Node2D" unique_id=1894532367]
 script = ExtResource("1_s6b3r")
 seconds_before_going_to_main_menu = 65.0
 
-[node name="Label" type="Label" parent="." unique_id=1692305714]
-offset_left = 346.0
-offset_top = 118.0
-offset_right = 833.0
-offset_bottom = 297.0
-text = "נגמרו לך החיים!
-נגמר המשחק!"
-label_settings = SubResource("LabelSettings_q0hf3")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="GameOverScreen" type="Sprite2D" parent="." unique_id=1714016548]
+scale = Vector2(0.688, 0.688)
+texture = ExtResource("2_334kd")
+centered = false
 
-[node name="Button" type="Button" parent="." unique_id=1904669623]
-offset_left = 284.0
-offset_top = 422.0
-offset_right = 501.0
-offset_bottom = 475.0
-text = "לשחק שוב?"
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1556452377]
+offset_left = 85.0
+offset_top = 278.00003
+offset_right = 835.3927
+offset_bottom = 543.4911
+rotation = -0.22718345
+scale = Vector2(0.77299404, 0.77299404)
+theme = SubResource("Theme_jppnr")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_hrek2")
+theme_override_font_sizes/normal_font_size = 43
+bbcode_enabled = true
+text = "שלום חייל/ת,"
+horizontal_alignment = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2136041709]
-offset_left = 672.0
-offset_top = 356.0
-offset_right = 921.0
-offset_bottom = 582.0
-color = Color(0.5019608, 0.5019608, 0, 1)
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=1138660638]
+offset_left = 141.99998
+offset_top = 368.0
+offset_right = 892.3927
+offset_bottom = 633.4911
+rotation = -0.2617994
+scale = Vector2(0.77299404, 0.77299404)
+theme = SubResource("Theme_jppnr")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_hrek2")
+theme_override_font_sizes/normal_font_size = 43
+bbcode_enabled = true
+text = "על ביצועיך הבזיוניים במהלך משימות המשחקונים, הוחלט לתת לך ריתוק של 28 יום בבסיס."
+horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="." unique_id=2143719836]
-offset_left = 705.0
-offset_top = 355.0
-offset_right = 880.0
-offset_bottom = 403.0
-text = "תספרו לי איך היה!"
-label_settings = SubResource("LabelSettings_wr3va")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="RichTextLabel3" type="RichTextLabel" parent="." unique_id=202195481]
+offset_left = 205.99998
+offset_top = 521.0001
+offset_right = 956.3927
+offset_bottom = 786.4912
+rotation = -0.2617994
+scale = Vector2(0.77299404, 0.77299404)
+theme = SubResource("Theme_jppnr")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_hrek2")
+theme_override_font_sizes/normal_font_size = 43
+bbcode_enabled = true
+text = "תוכל/י לבחור
 
-[node name="PlaytestQr" type="Sprite2D" parent="." unique_id=1812139538]
-position = Vector2(796, 484)
-scale = Vector2(0.74336284, 0.74336284)
-texture = ExtResource("2_obmb5")
+אך איננו מבטיחים שזה יעזור או יבטל
+את הריתוק הקיים כלל."
+horizontal_alignment = 2
+
+[node name="Button" type="TextureButton" parent="." unique_id=338554011]
+offset_left = 305.0
+offset_top = 412.0
+offset_right = 848.0
+offset_bottom = 667.0
+scale = Vector2(0.56700724, 0.56700724)
+texture_normal = ExtResource("3_hrek2")
+texture_pressed = ExtResource("4_jppnr")
+texture_hover = ExtResource("4_jppnr")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
